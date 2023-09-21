@@ -1,9 +1,10 @@
 import "./App.css";
+import BirthCertificate from "./components/BirthCertificate";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      {/* <BirthCertificate />    If you'r developing the frontend part then please don't touch this */}
     </div>
   );
 }
