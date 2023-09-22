@@ -17,6 +17,7 @@ contract BirthCertificate {
         string memory father_name,
         string memory mother_name,
         string memory dob,
+        address _issuedFrom,
         address _issuedTo
     ) external {
         childDetails[_issuedTo] = ChildDetails(
@@ -24,7 +25,7 @@ contract BirthCertificate {
             father_name,
             mother_name,
             dob,
-            msg.sender,
+            _issuedFrom,
             _issuedTo
         );
     }
