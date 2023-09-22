@@ -6,6 +6,7 @@ import passport from "passport";
 import cors from "cors";
 import { User } from "./models/auth.js";
 import authRoute from "./routes/signUp.js";
+import certificateRoute from "./routes/createCertificate.js";
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/sih")
@@ -28,6 +29,7 @@ const session_config = {
 };
 
 app.use(cors({ origin: "http://localhost:3000" }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session(session_config));
 app.use(passport.initialize());
@@ -37,6 +39,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use("/auth", authRoute);
+app.use("/", certificateRoute);
 
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}`);
