@@ -12,11 +12,24 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 function BirthCertificate() {
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
   const [provider, setProvider] = useState(null);
+
+  const formik = useFormik({
+    initialValues: {
+      child_name: "",
+      child_father_name: "",
+      child_mother_name: "",
+      birth_date: "",
+      issuedTo: "",
+    },
+    onSubmit: (values) => createBirthCertificate(values),
+  });
 
   useEffect(() => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -43,9 +56,25 @@ function BirthCertificate() {
     provider && loadProvider();
   }, []);
 
-  const createBirthCertificate = async () => {
-    const formdata = new FormData();
-  };
+  async function createBirthCertificate(values) {
+    // for (let value in values) {
+    //   console.log(values[value]);
+    // }
+    try {
+      console.log(formik.values.issuedTo);
+      await contract.addChildDetails(
+        formik.values.child_name,
+        formik.values.child_father_name,
+        formik.values.child_mother_name,
+        formik.values.birth_date,
+        account,
+        formik.values.issuedTo
+      );
+      console.log("Success");
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <Box
@@ -57,7 +86,11 @@ function BirthCertificate() {
         alignItems: "center",
       }}
     >
-      <Card sx={{ width: 500, p: 4 }} component="form">
+      <Card
+        sx={{ width: 500, p: 4 }}
+        component="form"
+        onSubmit={formik.handleSubmit}
+      >
         <Typography variant="h5">Create Birth Certificate</Typography>
         <Divider sx={{ mb: 4 }} />
         <Stack spacing={3}>
@@ -69,6 +102,8 @@ function BirthCertificate() {
               label="Child Name"
               id="child-name"
               name="child_name"
+              value={formik.values.child_name}
+              onChange={formik.handleChange}
             />
           </FormControl>
           <FormControl variant="outlined" fullWidth>
@@ -77,6 +112,8 @@ function BirthCertificate() {
               label="Father Name"
               id="father-name"
               name="child_father_name"
+              value={formik.values.child_father_name}
+              onChange={formik.handleChange}
             />
           </FormControl>
           <FormControl variant="outlined" fullWidth>
@@ -85,6 +122,8 @@ function BirthCertificate() {
               label="Mother Name"
               id="mother-name"
               name="child_mother_name"
+              value={formik.values.child_mother_name}
+              onChange={formik.handleChange}
             />
           </FormControl>
           <FormControl variant="outlined" fullWidth>
@@ -93,11 +132,19 @@ function BirthCertificate() {
               label="Date of Birth"
               id="date-of-birth"
               name="birth_date"
+              value={formik.values.birth_date}
+              onChange={formik.handleChange}
             />
           </FormControl>
           <FormControl variant="outlined" fullWidth>
             <InputLabel htmlFor="issuedTo">Issuing To</InputLabel>
-            <OutlinedInput label="Issuing To" id="issudeTo" name="issuedTo" />
+            <OutlinedInput
+              label="Issuing To"
+              id="issudeTo"
+              name="issuedTo"
+              value={formik.values.issuedTo}
+              onChange={formik.handleChange}
+            />
           </FormControl>
           <Button variant="contained" fullWidth type="submit">
             Create Certificate
