@@ -21,7 +21,7 @@ function App() {
           const signer = provider.getSigner();
           const address = await signer.getAddress();
           setAccount(address);
-          let contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+          let contractaddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
           const contract = new ethers.Contract(
             contractaddress,
             birthCertificate.abi,
@@ -43,7 +43,7 @@ function App() {
       <Routes>
         <Route
           path="/create-birth-certificate"
-          element={<BirthCertificate contract={contract} account={account} />}
+          element={<BirthCertificate contract={contract} />}
         />
         <Route
           path="/certificate/:id/birth-certificate"

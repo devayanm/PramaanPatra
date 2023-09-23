@@ -7,6 +7,7 @@ contract BirthCertificate {
         string child_father_name;
         string child_mother_name;
         string birth_date;
+        string birth_location;
         address issuedFrom;
         address issuedTo;
     }
@@ -17,7 +18,7 @@ contract BirthCertificate {
         string memory father_name,
         string memory mother_name,
         string memory dob,
-        address _issuedFrom,
+        string memory birth_location,
         address _issuedTo
     ) external {
         childDetails[_issuedTo] = ChildDetails(
@@ -25,7 +26,8 @@ contract BirthCertificate {
             father_name,
             mother_name,
             dob,
-            _issuedFrom,
+            birth_location,
+            msg.sender,
             _issuedTo
         );
     }
