@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
-import birthCertificate from "./artifacts/contracts/BirthCertificate.sol/BirthCertificate.json";
+// import birthCertificate from "./artifacts/contracts/BirthCertificate.sol/BirthCertificate.json";
 import "./App.css";
 import BirthCertificate from "./components/BirthCertificate";
 import ShowCertificate from "./components/ShowCertificate";
+import Navbar from "./components/Navbar/Navbar.js"
+import Homepage from "./components/Homepage/Homepage"
+import Footer from "./components/Footer/Footer"
 import { ethers } from "ethers";
 import { Routes, Route } from "react-router-dom";
 
@@ -24,7 +27,7 @@ function App() {
           let contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
           const contract = new ethers.Contract(
             contractaddress,
-            birthCertificate.abi,
+            // birthCertificate.abi,
             signer
           );
           setContract(contract);
@@ -40,6 +43,8 @@ function App() {
   }, []);
   return (
     <div className="App">
+      <Navbar />
+      <Homepage /> 
       <Routes>
         <Route
           path="/create-birth-certificate"
@@ -50,6 +55,7 @@ function App() {
           element={<ShowCertificate contract={contract} />}
         />
       </Routes>
+      <Footer />
     </div>
   );
 }
