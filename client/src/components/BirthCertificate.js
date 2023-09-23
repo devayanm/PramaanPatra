@@ -1,6 +1,3 @@
-import birthCertificate from "../artifacts/contracts/BirthCertificate.sol/BirthCertificate.json";
-import { useState, useEffect } from "react";
-import { ethers } from "ethers";
 import {
   Box,
   Card,
@@ -14,12 +11,11 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import axios from "axios";
+import { saveAs } from "file-saver";
+import { useNavigate } from "react-router-dom";
 
-function BirthCertificate() {
-  const [account, setAccount] = useState("");
-  const [contract, setContract] = useState(null);
-  const [provider, setProvider] = useState(null);
-
+function BirthCertificate({ contract, account }) {
   const formik = useFormik({
     initialValues: {
       child_name: "",
@@ -28,40 +24,12 @@ function BirthCertificate() {
       birth_date: "",
       issuedTo: "",
     },
-    onSubmit: (values) => createBirthCertificate(values),
+    onSubmit: createBirthCertificate,
   });
-
-  useEffect(() => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const loadProvider = async () => {
-      if (provider) {
-        window.ethereum.on("accountsChanged", () => window.location.reload());
-        window.ethereum.on("chainChanged", () => window.location.reload());
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner();
-        const address = await signer.getAddress();
-        setAccount(address);
-        let contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-        const contract = new ethers.Contract(
-          contractaddress,
-          birthCertificate.abi,
-          signer
-        );
-        setContract(contract);
-        setProvider(provider);
-      } else {
-        alert("Metamask is not installed in your browser :(");
-      }
-    };
-    provider && loadProvider();
-  }, []);
+  const navigate = useNavigate();
 
   async function createBirthCertificate(values) {
-    // for (let value in values) {
-    //   console.log(values[value]);
-    // }
     try {
-      console.log(formik.values.issuedTo);
       await contract.addChildDetails(
         formik.values.child_name,
         formik.values.child_father_name,
@@ -70,9 +38,30 @@ function BirthCertificate() {
         account,
         formik.values.issuedTo
       );
-      console.log("Success");
+      navigate(`/certificate/${formik.values.issuedTo}/birth-certificate`);
+      // const formdata = new FormData();
+      // for (let value in values) {
+      //   formdata.append(value, values[value]);
+      // }
+      // await axios({
+      //   method: "post",
+      //   url: "http://localhost:8080/create-certificate",
+      //   data: formdata,
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // })
+      //   .then(() =>
+      //     axios.get("http://localhost:8080/get-certificate", {
+      //       responseType: "blob",
+      //     })
+      //   )
+      //   .then((res) => {
+      //     const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+      //     saveAs(pdfBlob, "birth-certificate.pdf");
+      //   });
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
     }
   }
 
