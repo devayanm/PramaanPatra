@@ -1,64 +1,146 @@
+import moment from "moment";
+
 export const certificate = ({
   child_name,
   child_father_name,
   child_mother_name,
   birth_date,
 }) => {
+  const date = moment().format("L");
   return `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
     <title>Birth Certificate</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        margin-top: 30px;
+        width: 1220px;
+        height: 880px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .outer-container {
+        width: 950px;
+        height: 830px;
+        background-color: skyblue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .inner-container {
+        width: 920px;
+        height: 800px;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .certificate {
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .heading {
+        margin-bottom: 1.2rem;
+        font-size: 25px;
+        font-family: "Times New Roman", Times, serif;
+        color: rgb(0, 183, 255);
+      }
+      .regulation {
+        color: #555;
+      }
+      .m {
+        margin-bottom: 0.5rem;
+      }
+      .desc {
+        line-height: 22px;
+        margin-bottom: 2rem;
+        font-size: 17px;
+      }
+      .child-details {
+        font-size: 18px;
+        margin-bottom: 2.5rem;
+      }
+      .footer {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+      }
+      .box {
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .sign {
+        width: 100%;
+        border-bottom: 1px solid #555;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        color: darkblue;
+        font-style: italic;
+      }
+      .verify {
+        font-size: 18px;
+        text-decoration: none;
+        color: rgb(0, 183, 255);
+        margin-bottom: 1rem;
+      }
+    </style>
   </head>
   <body>
-    <div class="container w-100 d-flex justify-content-center">
-      <div
-        class="card p-4 d-flex flex-column align-items-center mt-5"
-        style="width: 80%"
-      >
-        <p class="h3 text-primary mb-3"><ins>BIRTH CERTIFICATE</ins></p>
-        <small class="mb-2"
-          >(Issued under Sec. 12/ Sec. 17 of the Registration of Births and
-          deaths Act, 1969)</small
-        >
-        <p class="mb-3">
-          This is to certify that the following information has been taken from
-          the original record of birth which is in the register for
-          <b>Krishnagar Municipality</b> of <b>KOTWALI</b> P.S.
-          <b>NADIA</b> District of West Bengal.
-        </p>
-        <div class="row w-100 mb-5">
-          <div class="col-6">
-            <div class="mb-2">Name: <b>${child_name}</b></div>
-            <div class="mb-2">Name of Father: <b>${child_father_name}</b></div>
-            <div class="mb-2">Name of Mother: <b>${child_mother_name}</b></div>
-          </div>
-          <div class="col-6">
-            <div class="mb-2">Date of birth: <b>${birth_date}</b></div>
-            <div class="mb-2">Place of Birth: <b>Anjali Aragya Niketan</b></div>
-            <div class="mb-2">Sex: <b>Male</b></div>
+    <div class="container">
+      <div class="outer-container">
+        <div class="inner-container">
+          <div class="certificate">
+            <p class="heading"><ins>BIRTH CERTIFICATE</ins></p>
+            <p class="m regulation">
+              (Issued under Sec. 12/ Sec. 17 of the Registration of Births and
+              deaths Act, 1969)
+            </p>
+            <p class="desc">
+              This is to certify that the following information has been taken
+              from the original record of birth which is in the register for
+              <b>Krishnagar Municipality</b> of <b>KOTWALI</b> P.S.
+              <b>NADIA</b> District of West Bengal.
+            </p>
+            <div class="child-details">
+              <div class="m">Name: <b>${child_name}</b></div>
+              <div class="m">Name of Father: <b>${child_father_name}</b></div>
+              <div class="m">Name of Mother: <b>${child_mother_name}</b></div>
+              <div class="m">Date of birth: <b>${birth_date}</b></div>
+              <div class="m">Place of Birth: <b>Anjali Aragya Niketan</b></div>
+              <div class="m">Sex: <b>Male</b></div>
+            </div>
+            <div class="footer">
+              <div class="box">
+                <div class="sign"></div>
+                <div>Signature</div>
+              </div>
+              <div class="box">
+                <div class="sign">${date}</div>
+                <div>Issued Date</div>
+              </div>
+            </div>
+            <a class="verify" href="/">VERIFY</a>
           </div>
         </div>
-        <a href="/">Verify</a>
       </div>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
 `;
