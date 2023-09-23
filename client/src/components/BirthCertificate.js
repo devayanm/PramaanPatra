@@ -15,13 +15,14 @@ import axios from "axios";
 import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
 
-function BirthCertificate({ contract, account }) {
+function BirthCertificate({ contract }) {
   const formik = useFormik({
     initialValues: {
       child_name: "",
       child_father_name: "",
       child_mother_name: "",
       birth_date: "",
+      birth_location: "",
       issuedTo: "",
     },
     onSubmit: createBirthCertificate,
@@ -35,31 +36,31 @@ function BirthCertificate({ contract, account }) {
         formik.values.child_father_name,
         formik.values.child_mother_name,
         formik.values.birth_date,
-        account,
+        formik.values.birth_location,
         formik.values.issuedTo
       );
       navigate(`/certificate/${formik.values.issuedTo}/birth-certificate`);
-      // const formdata = new FormData();
-      // for (let value in values) {
-      //   formdata.append(value, values[value]);
-      // }
-      // await axios({
-      //   method: "post",
-      //   url: "http://localhost:8080/create-certificate",
-      //   data: formdata,
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // })
-      //   .then(() =>
-      //     axios.get("http://localhost:8080/get-certificate", {
-      //       responseType: "blob",
-      //     })
-      //   )
-      //   .then((res) => {
-      //     const pdfBlob = new Blob([res.data], { type: "application/pdf" });
-      //     saveAs(pdfBlob, "birth-certificate.pdf");
-      //   });
+      const formdata = new FormData();
+      for (let value in values) {
+        formdata.append(value, values[value]);
+      }
+      await axios({
+        method: "post",
+        url: "http://localhost:8080/create-certificate",
+        data: formdata,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(() =>
+          axios.get("http://localhost:8080/get-certificate", {
+            responseType: "blob",
+          })
+        )
+        .then((res) => {
+          const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+          saveAs(pdfBlob, "birth-certificate.pdf");
+        });
     } catch (error) {
       console.log(error);
     }
@@ -122,6 +123,16 @@ function BirthCertificate({ contract, account }) {
               id="date-of-birth"
               name="birth_date"
               value={formik.values.birth_date}
+              onChange={formik.handleChange}
+            />
+          </FormControl>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel htmlFor="birth_location">Birth Place</InputLabel>
+            <OutlinedInput
+              label="Birth Place"
+              id="birth_location"
+              name="birth_location"
+              value={formik.values.birth_location}
               onChange={formik.handleChange}
             />
           </FormControl>
