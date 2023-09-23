@@ -15,7 +15,11 @@
     "express": "^4.18.2",
     "express-session": "^1.17.3",
     "html-pdf": "^3.0.1",
+<<<<<<< HEAD
     "moment": "^2.29.4",
+=======
+    "jsonwebtoken": "^9.0.2",
+>>>>>>> 1b28b19d0a7c1e39be75281ba3eae28f0efbfd7d
     "mongoose": "^7.5.2",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
