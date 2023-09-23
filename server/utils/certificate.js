@@ -5,6 +5,8 @@ export const certificate = ({
   child_father_name,
   child_mother_name,
   birth_date,
+  birth_location,
+  issuedTo,
 }) => {
   const date = moment().format("L");
   return `<!DOCTYPE html>
@@ -123,7 +125,7 @@ export const certificate = ({
               <div class="m">Name of Father: <b>${child_father_name}</b></div>
               <div class="m">Name of Mother: <b>${child_mother_name}</b></div>
               <div class="m">Date of birth: <b>${birth_date}</b></div>
-              <div class="m">Place of Birth: <b>Anjali Aragya Niketan</b></div>
+              <div class="m">Place of Birth: <b>${birth_location}</b></div>
               <div class="m">Sex: <b>Male</b></div>
             </div>
             <div class="footer">
@@ -136,7 +138,7 @@ export const certificate = ({
                 <div>Issued Date</div>
               </div>
             </div>
-            <a class="verify" href="/">VERIFY</a>
+            <a class="verify" target="_blank" href="http://localhost:3000/certificate/${issuedTo}/birth-certificate">VERIFY</a>
           </div>
         </div>
       </div>
