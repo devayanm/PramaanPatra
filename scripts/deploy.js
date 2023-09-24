@@ -1,14 +1,11 @@
 const hre = require("hardhat");
 
 async function main() {
-  const BirthCertificate = await hre.ethers.getContractFactory(
-    "BirthCertificate"
-  );
-  const upload = await BirthCertificate.deploy();
+  const Certificate = await hre.ethers.deployContract("Certificate");
 
-  await upload.deployed();
+  await Certificate.waitForDeployment();
 
-  console.log("Library deployed to:", upload.address);
+  console.log(`Deployed to: ${Certificate.target}`);
 }
 
 main().catch((error) => {
