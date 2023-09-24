@@ -111,7 +111,6 @@ function SignUp() {
                   Boolean(formik.touched.firstName) &&
                   Boolean(formik.errors.firstName)
                 }
-                autoFocus
               />
               {Boolean(formik.touched.firstName) && (
                 <Typography
@@ -236,7 +235,12 @@ function SignUp() {
             Sign up
           </Button>
         </Stack>
-        <Typography mt={5}>Already have an account? Sign in</Typography>
+        <Typography mt={5}>
+          Already have an account?{" "}
+          <Typography component="a" href="/auth/signin" color="primary">
+            Sign in
+          </Typography>
+        </Typography>
       </Box>
     </Card>
   );
