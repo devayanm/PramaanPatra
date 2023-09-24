@@ -9,6 +9,7 @@ import SignUp from "./components/auth/SignUp";
 import Notify from "./components/auth/Notify";
 import Verified from "./components/auth/Verified";
 import Home from "./components/Home/Home";
+import SignIn from "./components/auth/SignIn";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -48,9 +49,10 @@ function App() {
       sx={{ width: "100%", display: "flex", justifyContent: "center" }}
     >
       <Routes>
-        <Route path="/auth/sign-up" element={<SignUp />} />
+        <Route path="/auth/signup" element={<SignUp />} />
         <Route path="/notify" element={<Notify />} />
         <Route path="/auth/:id/verify/:token" element={<Verified />} />
+        <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/" element={<Home />} />
         <Route
           path="/create-birth-certificate"
