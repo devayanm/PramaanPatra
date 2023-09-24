@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
 import birthCertificate from "./artifacts/contracts/Certificate.sol/Certificate.json";
-import "./App.css";
 import BirthCertificate from "./components/BirthCertificate";
 import ShowCertificate from "./components/ShowCertificate";
-import Navbar from "./components/Navbar/Navbar.js"
-import Homepage from "./components/Homepage/Homepage"
-import Footer from "./components/Footer/Footer"
-import AuthForm from "./components/authentication/AuthForm";
 import { ethers } from "ethers";
 import { Routes, Route } from "react-router-dom";
 import { Box } from "@mui/material";
 import SignUp from "./components/auth/SignUp";
 import Notify from "./components/auth/Notify";
 import Verified from "./components/auth/Verified";
+import Home from "./components/Home/Home";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -32,7 +28,7 @@ function App() {
           let contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
           const contract = new ethers.Contract(
             contractaddress,
-            // birthCertificate.abi,
+            birthCertificate.abi,
             signer
           );
           setContract(contract);
@@ -55,6 +51,7 @@ function App() {
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/notify" element={<Notify />} />
         <Route path="/auth/:id/verify/:token" element={<Verified />} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/create-birth-certificate"
           element={<BirthCertificate contract={contract} />}
