@@ -1,35 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-main {
-    height: 100%;
-}
-
-body {
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-body,
-h1,
-h2,
-h3,
-p,
-ul,
-li {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background-color: #fff;
-    font-family: Arial, sans-serif;
-}
-
 .container {
     max-width: 1500px;
     margin: 0 auto;
@@ -96,12 +64,7 @@ body {
     margin-left: 300px;
 }
 
-.hero-btn a:hover {
-    background-color: #0056b3;
-    transition: background-color 0.3s ease;
-}
-
-.hero-img img {
+.img-fluid {
     height: 450px;
     border-radius: 0 0 400px 0;
     margin-left: 245px;
@@ -188,7 +151,7 @@ body {
 .about-img1 img {
     width: 500px;
     height: 300px;
-    margin-top: 80px;
+    margin-top: 40px;
     margin-left: 80px;
 }
 
