@@ -10,6 +10,7 @@ import Notify from "./components/auth/Notify";
 import Verified from "./components/auth/Verified";
 import Home from "./components/Home/Home";
 import SignIn from "./components/auth/SignIn";
+import GraduationCertificate from "./components/GraduationCertificate";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -61,6 +62,10 @@ function App() {
         <Route
           path="/certificate/:id/birth-certificate"
           element={<ShowCertificate contract={contract} />}
+        />
+        <Route
+          path="/create-graduation-certificate"
+          element={<GraduationCertificate contract={contract} />}
         />
       </Routes>
     </Box>
