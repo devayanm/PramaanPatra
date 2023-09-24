@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 const authSchema = new Schema({
   firstName: String,
   lastName: String,
-  aadharNo: Number,
+  aadharNo: String,
   employeeId: String,
   email: String,
   password: String,
