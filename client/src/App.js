@@ -3,6 +3,10 @@ import birthCertificate from "./artifacts/contracts/Certificate.sol/Certificate.
 import "./App.css";
 import BirthCertificate from "./components/BirthCertificate";
 import ShowCertificate from "./components/ShowCertificate";
+import Navbar from "./components/Navbar/Navbar.js"
+import Homepage from "./components/Homepage/Homepage"
+import Footer from "./components/Footer/Footer"
+import AuthForm from "./components/authentication/AuthForm";
 import { ethers } from "ethers";
 import { Routes, Route } from "react-router-dom";
 import { Box } from "@mui/material";
@@ -28,7 +32,7 @@ function App() {
           let contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
           const contract = new ethers.Contract(
             contractaddress,
-            birthCertificate.abi,
+            // birthCertificate.abi,
             signer
           );
           setContract(contract);

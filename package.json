@@ -1,6 +1,10 @@
 {
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
-    "hardhat": "^2.17.3"
+    "hardhat": "^2.17.3",
+    "react-scripts": "^5.0.1"
+  },
+  "dependencies": {
+    "ethers": "^6.1.0"
   }
 }
