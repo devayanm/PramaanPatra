@@ -4,7 +4,7 @@ function Navbar() {
     return (
         <header>
             <nav className="navbar navbar-expand-lg navbar-light">
-                <div className="container">
+                <div className="container grid grid-two-col">
                     <a className="navbar-brand" href="/">
                         <img src="./images/logo.png" alt="logo" width={100} />
                     </a>
@@ -20,6 +20,7 @@ function Navbar() {
                         <span className="navbar-toggler-icon" />
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
+                        <div className='container grid grid-two-col'>
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item dropdown">
                                 <a
@@ -81,17 +82,15 @@ function Navbar() {
                                     Account
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="/">
+                                    <a className="dropdown-item" href="/Profile/Profile.js">
                                         Profile
                                     </a>
                                     <a className="dropdown-item" href="/">
-                                        Dashboard
-                                    </a>
-                                    <a className="dropdown-item" href="/">
-                                        LogOut
+                                        Logout
                                     </a>
                                 </div>
                             </li>
+                        </div>
                         </div>
                     </div>
                 </div>

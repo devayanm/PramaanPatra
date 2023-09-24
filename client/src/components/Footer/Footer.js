@@ -3,9 +3,9 @@ import React from 'react'
 function Footer() {
     return (
         <footer className="footer-section">
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-4">
+            <div className='footer'>
+                <div className='container grid grid-three-col'>
+                    <div className="">
                         <div className="footer-about">
                             <h3>About Us</h3>
                             <p>
@@ -14,7 +14,7 @@ function Footer() {
                             </p>
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="">
                         <div className="footer-contact">
                             <h3>Contact Us</h3>
                             <p>
@@ -24,7 +24,7 @@ function Footer() {
                             </p>
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="">
                         <div className="footer-social">
                             <h3>Follow Us</h3>
                             <a href="/">
@@ -39,9 +39,9 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-                <hr />
-                <p className="text-center">© 2023 Your Website Name</p>
             </div>
+            <hr />
+            <p className="text-center">© 2023 Your Website Name</p>
         </footer>
     );
 }

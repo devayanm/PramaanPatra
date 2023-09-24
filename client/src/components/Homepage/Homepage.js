@@ -37,7 +37,7 @@ function Homepage() {
                                         <h2>Birth Certificates</h2>
                                         <p>Create your Birth Certificate here</p>
                                         <div className="about-btn1">
-                                            <a href="/" className="btn btn-primary">
+                                            <a href="/components/BirthCertificate" className="btn btn-primary">
                                                 Birth Certificate
                                             </a>
                                         </div>

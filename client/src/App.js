@@ -8,6 +8,7 @@ import Homepage from "./components/Homepage/Homepage"
 import Footer from "./components/Footer/Footer"
 import { ethers } from "ethers";
 import { Routes, Route } from "react-router-dom";
+import AuthForm from "./components/authentication/AuthForm";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -43,8 +44,9 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <Navbar />
-      <Homepage /> 
+      <AuthForm />
+      {/* <Navbar /> */}
+      {/* <Homepage />  */}
       <Routes>
         <Route
           path="/create-birth-certificate"
@@ -55,7 +57,7 @@ function App() {
           element={<ShowCertificate contract={contract} />}
         />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
