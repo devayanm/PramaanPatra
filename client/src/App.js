@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import { Box } from "@mui/material";
 import SignUp from "./components/auth/SignUp";
 import Notify from "./components/auth/Notify";
+import Verified from "./components/auth/Verified";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -46,29 +47,24 @@ function App() {
     provider && loadProvider();
   }, []);
   return (
-    <div className="App">
-      <AuthForm />
-      {/* <Navbar /> */}
-      {/* <Homepage />  */}
-      <Box
-        className="App"
-        sx={{ width: "100%", display: "flex", justifyContent: "center" }}
-      >
-        <Routes>
-          <Route path="/auth/sign-up" element={<SignUp />} />
-          <Route path="/notify" element={<Notify />} />
-          <Route
-            path="/create-birth-certificate"
-            element={<BirthCertificate contract={contract} />}
-          />
-          <Route
-            path="/certificate/:id/birth-certificate"
-            element={<ShowCertificate contract={contract} />}
-          />
-        </Routes>
-        {/* <Footer /> */}
-      </Box >
-    </div>
+    <Box
+      className="App"
+      sx={{ width: "100%", display: "flex", justifyContent: "center" }}
+    >
+      <Routes>
+        <Route path="/auth/sign-up" element={<SignUp />} />
+        <Route path="/notify" element={<Notify />} />
+        <Route path="/auth/:id/verify/:token" element={<Verified />} />
+        <Route
+          path="/create-birth-certificate"
+          element={<BirthCertificate contract={contract} />}
+        />
+        <Route
+          path="/certificate/:id/birth-certificate"
+          element={<ShowCertificate contract={contract} />}
+        />
+      </Routes>
+    </Box>
   );
 }
 
