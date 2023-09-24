@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import { Box } from "@mui/material";
 import SignUp from "./components/auth/SignUp";
 import Notify from "./components/auth/Notify";
+import Verified from "./components/auth/Verified";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -49,6 +50,7 @@ function App() {
       <Routes>
         <Route path="/auth/sign-up" element={<SignUp />} />
         <Route path="/notify" element={<Notify />} />
+        <Route path="/auth/:id/verify/:token" element={<Verified />} />
         <Route
           path="/create-birth-certificate"
           element={<BirthCertificate contract={contract} />}
