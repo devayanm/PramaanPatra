@@ -11,13 +11,13 @@ export default function AuthForm() {
         }
     };
     const containerClass =
-        "container " + (type === "signUp" ? "right-panel-active" : "");
+        "cont " + (type === "signUp" ? "right-panel-active" : "");
     return (
         <div className="App">
-            <div className={containerClass} id="container">
+            <div className={containerClass} id="cont">
                 <SignUpForm />
                 <SignInForm />
-                <div className="overlay-container">
+                <div className="overlay-cont">
                     <div className="overlay">
                         <div className="overlay-panel overlay-left">
                             <img className="signup-img" src="/images/SignUp.png" alt=""></img>

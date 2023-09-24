@@ -28,21 +28,9 @@ function SignIn() {
     };
 
     return (
-        <div className="form-container sign-in-container">
+        <div className="form-cont sign-in-cont">
             <form onSubmit={handleOnSubmit}>
                 <h1>Sign in</h1>
-                <div className="social-container">
-                    <a href="#" className="social">
-                        <i className="fab fa-facebook-f" />
-                    </a>
-                    <a href="#" className="social">
-                        <i className="fab fa-google-plus-g" />
-                    </a>
-                    <a href="#" className="social">
-                        <i className="fab fa-linkedin-in" />
-                    </a>
-                </div>
-                <span>or use your account</span>
                 <input
                     type="email"
                     placeholder="Email"
@@ -57,7 +45,7 @@ function SignIn() {
                     value={state.password}
                     onChange={handleChange}
                 />
-                <a href="#">Forgot your password?</a>
+                <a href="/">Forgot your password?</a>
                 <button>Sign In</button>
             </form>
         </div>
