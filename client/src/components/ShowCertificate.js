@@ -30,16 +30,15 @@ function ShowCertificate({ contract }) {
           <Card
             sx={{
               width: "40rem",
-              height: "fit-content",
               p: 4,
               mt: 5,
               mb: 5,
             }}
           >
+            <Typography variant="h5" color="primary" mb={4}>
+              Transaction Details
+            </Typography>
             <Stack spacing={2}>
-              <Typography variant="h5" color="primary" alignSelf="center">
-                Transaction Details
-              </Typography>
               <Typography>Issued from: {data.issuedFrom}</Typography>
               <Divider />
               <Typography>Issued to: {data.issuedTo}</Typography>
