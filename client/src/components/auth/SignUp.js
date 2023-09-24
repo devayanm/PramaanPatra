@@ -59,20 +59,32 @@ function SignUp() {
         .required("Password is Required!"),
     }),
   });
+
   async function signUp(values, onSubmitProps) {
-    const formdata = new FormData();
-    for (let value in values) {
-      formdata.append(value, values[value]);
-    }
-    await axios({
-      method: "post",
-      url: "http://localhost:8080/auth/signup",
-      data: formdata,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => navigate("/notify"));
-    onSubmitProps.resetForm();
+    await axios
+      .get("http://localhost:8080/aadharapi")
+      .then((res) =>
+        res.data.map(async (user) => {
+          if (user.aadhar_no === formik.values.aadharNo) {
+            const formdata = new FormData();
+            for (let value in values) {
+              formdata.append(value, values[value]);
+            }
+            await axios({
+              method: "post",
+              url: "http://localhost:8080/auth/signup",
+              data: formdata,
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }).then(() => navigate("/notify"));
+            onSubmitProps.resetForm();
+          } else {
+            console.log("Please enter a valid aadhar no!");
+          }
+        })
+      )
+      .catch((e) => console.log(e));
   }
   return (
     <Card sx={{ width: "70%", mt: 5, mb: 5, display: "flex" }}>
