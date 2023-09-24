@@ -45,14 +45,14 @@ export const certificate = ({
         align-items: center;
       }
       .certificate {
-        padding: 3rem;
+        padding: 30px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
       }
       .heading {
-        margin-bottom: 1.2rem;
+        margin-bottom: 12px;
         font-size: 25px;
         font-family: "Times New Roman", Times, serif;
         color: rgb(0, 183, 255);
@@ -61,22 +61,22 @@ export const certificate = ({
         color: #555;
       }
       .m {
-        margin-bottom: 0.5rem;
+        margin-bottom: 5px;
       }
       .desc {
         line-height: 22px;
-        margin-bottom: 2rem;
+        margin-bottom: 20px;
         font-size: 17px;
       }
       .child-details {
         font-size: 18px;
-        margin-bottom: 2.5rem;
+        margin-bottom: 25px;
       }
       .footer {
         width: 100%;
         display: flex;
         justify-content: space-between;
-        margin-bottom: 2rem;
+        margin-bottom: 20px;
       }
       .box {
         width: 30%;
@@ -100,7 +100,7 @@ export const certificate = ({
         font-size: 18px;
         text-decoration: none;
         color: rgb(0, 183, 255);
-        margin-bottom: 1rem;
+        margin-bottom: 10px;
       }
     </style>
   </head>
