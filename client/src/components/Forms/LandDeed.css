@@ -1,0 +1,111 @@
+.landdeed-form {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form-container {
+    height: 800px;
+    max-width: 1000px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px 4px #00000040;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.left-side {
+    flex: 1;
+    background-color: #47DED9;
+    padding: 60px;
+    border-radius: 0 50px 50px 0;
+}
+
+.right-side {
+    flex: 1;
+    padding: 40px;
+}
+
+.form-title {
+    color: #0084ffe3;
+    font-family: "Lora-Medium", Helvetica;
+    font-size: 35px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.field-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.field {
+    background-color: #ffffff;
+    border: 1px solid #00000066;
+    border-radius: 22px;
+    box-shadow: 0px 4px 4px #00000040;
+    flex: 1;
+    padding: 10px;
+    margin: 10px;
+    position: relative;
+}
+
+.text-field {
+    margin-bottom: 20px;
+}
+
+.field-label {
+    color: #0000005e;
+    font-family: "Lora-Medium", Helvetica;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    position: absolute;
+    bottom: -18px;
+    left: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #0000005e;
+    outline: none;
+}
+
+.certificate-button {
+    margin-top: 20px;
+}
+
+.certificate-button-label {
+    background-color: #0084ffe3;
+    border-radius: 22px;
+    color: #ffffff;
+    font-family: "Lora-Medium", Helvetica;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    transition: background-color 0.2s;
+}
+
+.certificate-button-label:hover {
+    background-color: #0084ff;
+}
+
+.landdeed-img {
+    width: 400px;
+    margin-top: 100px;
+}
