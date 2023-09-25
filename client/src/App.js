@@ -11,6 +11,7 @@ import Verified from "./components/auth/Verified";
 import Home from "./components/Home/Home";
 import SignIn from "./components/auth/SignIn";
 import GraduationCertificate from "./components/GraduationCertificate";
+import LandDeed from "./components/Forms/LandDeed";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -66,6 +67,10 @@ function App() {
         <Route
           path="/create-graduation-certificate"
           element={<GraduationCertificate contract={contract} />}
+        />
+        <Route
+          path="/LandDeed"
+          element={<LandDeed/>}
         />
       </Routes>
     </Box>

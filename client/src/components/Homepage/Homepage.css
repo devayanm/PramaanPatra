@@ -1,3 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
 .container {
   max-width: 1500px;
   margin: 0 auto;
@@ -25,7 +57,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 440px;
+  height: 450px;
   margin-bottom: 20px;
   background-color: rgba(17, 236, 157, 0.16);
   border-radius: 0 0 400px 0;
@@ -48,15 +80,10 @@
   margin-left: 150px;
 }
 
-.hero-txt span {
-  color: #11ec4e;
-  font-weight: bold;
-}
-
 .hero-btn a {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #11ec4e;
+  background-color: #28a745;
   color: #fff;
   text-decoration: none;
   font-weight: bold;
@@ -65,14 +92,14 @@
 }
 
 .hero-btn a:hover {
-  background-color: #0056b3;
+  background-color: #11ec4e;
   transition: background-color 0.3s ease;
 }
 
 .hero-img img {
-  height: 450px;
+  height: 445px;
   border-radius: 0 0 400px 0;
-  margin-left: 200px;
+  margin-left: 250px;
 }
 
 .about {
@@ -125,32 +152,6 @@
 .about-btn2,
 .about-btn3 {
   margin-top: 10px;
-}
-
-.about-btn1 a,
-.about-btn2 a,
-.about-btn3 a {
-  display: inline-block;
-  padding: 10px 10px;
-  background-color: #007bff;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 50px;
-  height: 40px;
-  width: 180px;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.about-btn1 a:hover,
-.about-btn2 a:hover,
-.about-btn3 a:hover {
-  background-color: #0056b3;
-  transition: background-color 0.3s ease;
 }
 
 .about-img1 img {
