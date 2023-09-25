@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 import birthCertificate from "./artifacts/contracts/Certificate.sol/Certificate.json";
+=======
+import certificate from "./artifacts/contracts/Certificate.sol/Certificate.json";
+>>>>>>> c81b9a91f875320d4ab470a515a89710e09f8992
 import BirthCertificate from "./components/BirthCertificate";
 import ShowCertificate from "./components/ShowCertificate";
 import { ethers } from "ethers";
@@ -31,7 +35,11 @@ function App() {
           let contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
           const contract = new ethers.Contract(
             contractaddress,
+<<<<<<< HEAD
             birthCertificate.abi,
+=======
+            certificate.abi,
+>>>>>>> c81b9a91f875320d4ab470a515a89710e09f8992
             signer
           );
           setContract(contract);

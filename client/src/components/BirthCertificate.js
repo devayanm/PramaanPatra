@@ -14,13 +14,34 @@ import * as yup from "yup";
 import axios from "axios";
 import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
+import Modal from "@mui/material/Modal";
+import { useEffect, useState } from "react";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 function BirthCertificate({ contract }) {
+  const [open, setOpen] = useState(false);
+  const [verified, setVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const formik = useFormik({
     initialValues: {
       child_name: "",
       child_father_name: "",
+      father_aadhar_no: "",
       child_mother_name: "",
+      mother_aadhar_no: "",
       birth_date: "",
       birth_location: "",
       issuedTo: "",
@@ -31,7 +52,7 @@ function BirthCertificate({ contract }) {
 
   async function createBirthCertificate(values) {
     try {
-      await contract.addChildDetails(
+      const request = await contract.addChildDetails(
         formik.values.child_name,
         formik.values.child_father_name,
         formik.values.child_mother_name,
@@ -62,15 +83,42 @@ function BirthCertificate({ contract }) {
           saveAs(pdfBlob, "birth-certificate.pdf");
         });
     } catch (error) {
-      console.log(error);
+      handleOpen();
     }
   }
 
+  useEffect(() => {
+    console.log("Hello");
+    const verifyAadhar = async () => {
+      await axios.get("http://localhost:8080/aadharapi").then((res) => {
+        res.data.map((user) => {
+          user.aadhar_no === formik.values.father_aadhar_no &&
+            setVerified(true);
+        });
+      });
+    };
+    verifyAadhar();
+  }, [formik.values.father_aadhar_no]);
+
+  useEffect(() => {
+    const verifyAadhar = async () => {
+      await axios.get("http://localhost:8080/aadharapi").then((res) => {
+        res.data.map(
+          (user) =>
+            user.aadhar_no === formik.values.mother_aadhar_no &&
+            setIsVerified(true)
+        );
+      });
+    };
+    verifyAadhar();
+  }, [formik.values.mother_aadhar_no]);
+
   return (
     <Box
+      mt={5}
+      mb={5}
       sx={{
         width: "100%",
-        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -107,6 +155,25 @@ function BirthCertificate({ contract }) {
             />
           </FormControl>
           <FormControl variant="outlined" fullWidth>
+            <InputLabel htmlFor="father-name">Father Aadhar No</InputLabel>
+            <OutlinedInput
+              label="Father Aadhar No"
+              id="father-aadhar-no"
+              name="father_aadhar_no"
+              value={formik.values.father_aadhar_no}
+              onChange={formik.handleChange}
+            />
+            {verified ? (
+              <Typography variant="caption" color="green" mt={1}>
+                Aadhar no verified
+              </Typography>
+            ) : (
+              <Typography variant="caption" color="error" mt={1}>
+                Aadhar is not verified!
+              </Typography>
+            )}
+          </FormControl>
+          <FormControl variant="outlined" fullWidth>
             <InputLabel htmlFor="mother-name">Mother Name</InputLabel>
             <OutlinedInput
               label="Mother Name"
@@ -115,6 +182,25 @@ function BirthCertificate({ contract }) {
               value={formik.values.child_mother_name}
               onChange={formik.handleChange}
             />
+          </FormControl>
+          <FormControl variant="outlined" fullWidth>
+            <InputLabel htmlFor="mother-name">Mother Aadhar No</InputLabel>
+            <OutlinedInput
+              label="Mother Aadhar No"
+              id="mother-aadhar-no"
+              name="mother_aadhar_no"
+              value={formik.values.mother_aadhar_no}
+              onChange={formik.handleChange}
+            />
+            {isVerified ? (
+              <Typography variant="caption" color="green" mt={1}>
+                Aadhar no verified
+              </Typography>
+            ) : (
+              <Typography variant="caption" color="error" mt={1}>
+                Aadhar is not verified!
+              </Typography>
+            )}
           </FormControl>
           <FormControl variant="outlined" fullWidth>
             <InputLabel htmlFor="date-of-birth">Date of Birth</InputLabel>
@@ -151,6 +237,27 @@ function BirthCertificate({ contract }) {
           </Button>
         </Stack>
       </Card>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            color="red"
+            component="h2"
+          >
+            ERROR
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Something Went Wrong!
+          </Typography>
+        </Box>
+      </Modal>
     </Box>
   );
 }

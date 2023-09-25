@@ -33,7 +33,9 @@ contract Certificate {
         address _issuedTo
     ) external {
         for (uint i = 0; i < haveBirthCertificate.length; i++) {
-            if (haveBirthCertificate[i] == _issuedTo) return;
+            if (haveBirthCertificate[i] == _issuedTo) {
+                revert("This account already has a certificate provided!");
+            }
         }
         childDetails[_issuedTo] = ChildDetails(
             name,
