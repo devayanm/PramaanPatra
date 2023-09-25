@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Box, Card, Divider, Stack, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 function ShowCertificate({ contract }) {
   const [data, setData] = useState(null);
+  const [qr, setQr] = useState(null);
   const params = useParams();
 
   useEffect(() => {
@@ -17,6 +19,7 @@ function ShowCertificate({ contract }) {
     };
     fetchedData();
   }, [params]);
+
   return (
     <>
       {data !== null && (
@@ -39,6 +42,8 @@ function ShowCertificate({ contract }) {
               Transaction Details
             </Typography>
             <Stack spacing={2}>
+              <Typography>Transaction hash: {params.txid}</Typography>
+              <Divider />
               <Typography>Issued from: {data.issuedFrom}</Typography>
               <Divider />
               <Typography>Issued to: {data.issuedTo}</Typography>
@@ -59,6 +64,10 @@ function ShowCertificate({ contract }) {
               <Divider />
               <Typography>Place of Birth: {data.birth_location}</Typography>
               <Divider />
+              <Box
+                component="img"
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${params.txid}`}
+              />
             </Stack>
           </Card>
         </Box>

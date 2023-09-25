@@ -60,7 +60,7 @@ function App() {
           element={<BirthCertificate contract={contract} />}
         />
         <Route
-          path="/certificate/:id/birth-certificate"
+          path="/certificate/:id/birth-certificate/:txid"
           element={<ShowCertificate contract={contract} />}
         />
         <Route
