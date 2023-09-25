@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import birthCertificate from "./artifacts/contracts/Certificate.sol/Certificate.json";
+// import birthCertificate from "./artifacts/contracts/Certificate.sol/Certificate.json";
 import BirthCertificate from "./components/BirthCertificate";
 import ShowCertificate from "./components/ShowCertificate";
 import { ethers } from "ethers";
@@ -30,7 +30,7 @@ function App() {
           let contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
           const contract = new ethers.Contract(
             contractaddress,
-            birthCertificate.abi,
+            // birthCertificate.abi,
             signer
           );
           setContract(contract);
