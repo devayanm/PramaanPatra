@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// import birthCertificate from "./artifacts/contracts/Certificate.sol/Certificate.json";
+import birthCertificate from "./artifacts/contracts/Certificate.sol/Certificate.json";
 import BirthCertificate from "./components/BirthCertificate";
 import ShowCertificate from "./components/ShowCertificate";
 import { ethers } from "ethers";
@@ -11,6 +11,7 @@ import Verified from "./components/auth/Verified";
 import Home from "./components/Home/Home";
 import SignIn from "./components/auth/SignIn";
 import GraduationCertificate from "./components/GraduationCertificate";
+import LandDeed from "./components/Forms/LandDeed";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -30,7 +31,7 @@ function App() {
           let contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
           const contract = new ethers.Contract(
             contractaddress,
-            // birthCertificate.abi,
+            birthCertificate.abi,
             signer
           );
           setContract(contract);
@@ -66,6 +67,10 @@ function App() {
         <Route
           path="/create-graduation-certificate"
           element={<GraduationCertificate contract={contract} />}
+        />
+        <Route
+          path="/LandDeed"
+          element={<LandDeed/>}
         />
       </Routes>
     </Box>
