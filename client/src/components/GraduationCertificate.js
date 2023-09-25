@@ -113,7 +113,7 @@ function GraduationCertificate({ contract }) {
             <OutlinedInput
               label="Institute Name"
               id="institute-name"
-              name="istitute_name"
+              name="institute_name"
               value={formik.values.institute_name}
               onChange={formik.handleChange}
             />
