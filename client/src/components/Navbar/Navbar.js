@@ -39,9 +39,9 @@ function Navbar() {
         <AppBar position="static" sx={{ backgroundColor: 'white' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters sx={{ paddingTop: '30px', paddingBottom: '30px' }}>
-                    <Box sx={{ marginLeft: '100px' }}>
+                    <Box sx={{ marginLeft: '60px' }}>
                         <img
-                            src="/path/logo.png"
+                            src="/images/Logo-bg-white.png"
                             alt="Logo"
                             sx={{
                                 display: { xs: 'none', md: 'flex' },
@@ -49,23 +49,7 @@ function Navbar() {
                                 height: '30px',
                             }}
                         />
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            href="/"
-                            sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'black',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            LOGO
-                        </Typography>
+                        
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
