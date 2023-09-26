@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Box, Card, Divider, Stack, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 function ShowCertificate({ contract }) {
   const [data, setData] = useState(null);
-  const [qr, setQr] = useState(null);
   const params = useParams();
 
   useEffect(() => {
@@ -65,8 +63,10 @@ function ShowCertificate({ contract }) {
               <Typography>Place of Birth: {data.birth_location}</Typography>
               <Divider />
               <Box
+                width={100}
+                height={100}
                 component="img"
-                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${params.txid}`}
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=transaction_hash=${params.txid}|from=${data.issuedFrom}|to=${data.issuedTo}`}
               />
             </Stack>
           </Card>
