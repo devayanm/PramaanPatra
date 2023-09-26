@@ -6,9 +6,9 @@ function Footer() {
         <footer class="footer">
             <div class="footer-left col-md-4 col-sm-6">
                 <p class="about">
-                    <span> About the company</span>
-                    We're [Project Name], revolutionizing certificate management with blockchain. Our mission: secure, transparent certificates for all. Join us in the future of trust.
-                    [Project Name] - Certificates Simplified, Secure.
+                    <span> About Us</span>
+                    We're PramaanPatra, revolutionizing certificate management with blockchain. Our mission: secure, transparent certificates for all. Join us in the future of trust.
+                    PramaanPatra - Certificates Simplified, Secure.
                 </p>
                 <div class="icons">
                     <a href="/"><i class="fa fa-facebook"></i></a>
@@ -33,7 +33,7 @@ function Footer() {
                 </div>
             </div>
             <div class="footer-right col-md-4 col-sm-6">
-                <h2> Project <span> logo</span></h2>
+                <img src='/images/Logo-bg-black.png' alt='PramaanPatra'></img>
                 <p class="menu">
                     <a href="/"> Solutions</a> |
                     <a href="/"> Industries</a> |
@@ -41,7 +41,7 @@ function Footer() {
                     <a href="/"> Resources</a> |
                     <a href="/"> Marketplace</a>
                 </p>
-                <p class="name"> Project Name &copy; 2023</p>
+                <p class="name"> PramaanPatra &copy; 2023</p>
             </div>
         </footer>
     )
