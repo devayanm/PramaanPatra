@@ -60,7 +60,10 @@ function BirthCertificate({ contract }) {
         formik.values.birth_location,
         formik.values.issuedTo
       );
-      navigate(`/certificate/${formik.values.issuedTo}/birth-certificate`);
+      console.log(request);
+      navigate(
+        `/certificate/${formik.values.issuedTo}/birth-certificate/${request.hash}`
+      );
       const formdata = new FormData();
       for (let value in values) {
         formdata.append(value, values[value]);
