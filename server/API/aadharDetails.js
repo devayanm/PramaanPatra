@@ -40,8 +40,8 @@ export const aadharDetails = [
   },
   {
     name: "Devayan Mandal",
-    father_name: "Dinabandhu Mandal",
-    vill: "Kathalpolli",
+    father_name: "Dinobandhu Mandal",
+    vill: "Kanthalpuli",
     po: "Chakdaha",
     ps: "Chakdaha",
     dist: "Nadia",

@@ -21,7 +21,8 @@
     "nodemailer": "^6.9.5",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^8.0.0"
+    "passport-local-mongoose": "^8.0.0",
+    "puppeteer": "^21.3.6"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

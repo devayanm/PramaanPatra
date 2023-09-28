@@ -1,16 +1,37 @@
-import pdf from "html-pdf";
-import { certificate } from "../utils/certificate.js";
+import certificate from '../utils/certificate.js';
+import puppeteer from 'puppeteer';
 
-export const createCertificate = (req, res) => {
-  console.log(req.body);
-  pdf
-    .create(certificate(req.body), {})
-    .toFile("birth-certificate.pdf", (err) => {
-      if (err) res.send(Promise.reject());
-      res.send(Promise.resolve());
+const createCertificate = async (req, res) => {
+  try {
+    const htmlContent = certificate(req.body);
+
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+
+    await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
+
+    const pdfPath = 'birth-certificate.pdf';
+
+    await page.pdf({
+      path: pdfPath,
+      format: 'A4',
+      margin: { top: '20px', right: '20px', bottom: '20px', left: '20px' },
+      printBackground: true,
     });
+
+    console.log(`PDF saved to: ${pdfPath}`);
+
+    await browser.close();
+
+    res.send("PDF generated successfully");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error generating PDF");
+  }
 };
 
-export const getCertificate = (req, res) => {
-  res.sendFile(`D:/EtherElites-SIH2023/server/birth-certificate.pdf`);
+const getCertificate = (req, res) => {
+  res.sendFile('D:/EtherElites-SIH2023/server/birth-certificate.pdf');
 };
+
+export { createCertificate, getCertificate };
