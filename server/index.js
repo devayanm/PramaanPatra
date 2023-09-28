@@ -8,9 +8,13 @@ import { User } from "./models/auth.js";
 import authRoute from "./routes/signUp.js";
 import certificateRoute from "./routes/createCertificate.js";
 import { aadharDetails } from "./API/aadharDetails.js";
+import aadharRoute from "./routes/aadhar.js";
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/sih")
+  .connect("mongodb://127.0.0.1:27017/sih", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("Connected"))
   .catch((err) => console.log(err));
 
@@ -41,6 +45,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use("/auth", authRoute);
 app.use("/", certificateRoute);
+app.use("/", aadharRoute);
 app.get("/aadharapi", (req, res) => res.send(aadharDetails));
 
 app.listen(PORT, () => {

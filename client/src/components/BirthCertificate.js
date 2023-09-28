@@ -33,6 +33,7 @@ function BirthCertificate({ contract }) {
   const [open, setOpen] = useState(false);
   const [verified, setVerified] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [fatherAadhar, setFatherAadhar] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const formik = useFormik({
@@ -47,6 +48,25 @@ function BirthCertificate({ contract }) {
       issuedTo: "",
     },
     onSubmit: createBirthCertificate,
+    validationSchema: yup.object({
+      child_name: yup.string().required("Child Name is Required!"),
+      child_father_name: yup.string().required("Father Name is Required!"),
+      father_aadhar_no: yup
+        .string()
+        .min(12, "Aadhar No is Not Valid!")
+        .max(12, "Aadhar No is Not Valid!")
+        // .matches(matchFatherAadhar(), "Aadhar No is not Verified!")
+        .required("Aadhar No is Required!"),
+      child_mother_name: yup.string().required("Mother Name is Required!"),
+      mother_aadhar_no: yup
+        .string()
+        .min(12, "Aadhar No is Not Valid!")
+        .max(12, "Aadhar No is Not Valid!")
+        .required("Aadhar No is Required!"),
+      birth_date: yup.string().required("Date of Birth is Required!"),
+      birth_location: yup.string().required("Birth Location is Required!"),
+      issuedTo: yup.string().required("This section is Required!"),
+    }),
   });
   const navigate = useNavigate();
 
@@ -90,28 +110,52 @@ function BirthCertificate({ contract }) {
     }
   }
 
+  async function matchFatherAadhar() {
+    const formdata = new FormData();
+    formdata.append("aadhar_no", fatherAadhar);
+    await axios({
+      method: "POST",
+      url: "http://localhost:8080/aadhar",
+      data: formdata,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        console.log(res.data.aadhar_no);
+        return res.data.aadhar_no;
+      })
+      .catch((err) => console.log(err));
+  }
+
   useEffect(() => {
-    console.log("Hello");
     const verifyAadhar = async () => {
-      await axios.get("http://localhost:8080/aadharapi").then((res) => {
-        res.data.map((user) => {
-          user.aadhar_no === formik.values.father_aadhar_no &&
-            setVerified(true);
-        });
-      });
+      await axios
+        .get("http://localhost:8080/aadharapi")
+        .then((res) => {
+          res.data.map(
+            (user) =>
+              user.aadhar_no === formik.values.father_aadhar_no &&
+              setVerified(true)
+          );
+        })
+        .catch((err) => console.log(err));
     };
     verifyAadhar();
   }, [formik.values.father_aadhar_no]);
 
   useEffect(() => {
     const verifyAadhar = async () => {
-      await axios.get("http://localhost:8080/aadharapi").then((res) => {
-        res.data.map(
-          (user) =>
-            user.aadhar_no === formik.values.mother_aadhar_no &&
-            setIsVerified(true)
-        );
-      });
+      await axios
+        .get("http://localhost:8080/aadharapi")
+        .then((res) => {
+          res.data.map(
+            (user) =>
+              user.aadhar_no === formik.values.mother_aadhar_no &&
+              setIsVerified(true)
+          );
+        })
+        .catch((err) => console.log(err));
     };
     verifyAadhar();
   }, [formik.values.mother_aadhar_no]);
@@ -145,7 +189,21 @@ function BirthCertificate({ contract }) {
               name="child_name"
               value={formik.values.child_name}
               onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.child_name) &&
+                Boolean(formik.errors.child_name)
+              }
             />
+            {Boolean(formik.touched.child_name) && (
+              <Typography
+                variant="caption"
+                mt={1}
+                color="red"
+                alignSelf="start"
+              >
+                {formik.errors.child_name}
+              </Typography>
+            )}
           </FormControl>
           <FormControl variant="outlined" fullWidth>
             <InputLabel htmlFor="father-name">Father Name</InputLabel>
@@ -155,7 +213,21 @@ function BirthCertificate({ contract }) {
               name="child_father_name"
               value={formik.values.child_father_name}
               onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.child_father_name) &&
+                Boolean(formik.errors.child_father_name)
+              }
             />
+            {Boolean(formik.touched.child_father_name) && (
+              <Typography
+                variant="caption"
+                mt={1}
+                color="red"
+                alignSelf="start"
+              >
+                {formik.errors.child_father_name}
+              </Typography>
+            )}
           </FormControl>
           <FormControl variant="outlined" fullWidth>
             <InputLabel htmlFor="father-name">Father Aadhar No</InputLabel>
@@ -165,6 +237,10 @@ function BirthCertificate({ contract }) {
               name="father_aadhar_no"
               value={formik.values.father_aadhar_no}
               onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.father_aadhar_no) &&
+                Boolean(formik.errors.father_aadhar_no)
+              }
             />
             {verified ? (
               <Typography variant="caption" color="green" mt={1}>
@@ -173,6 +249,16 @@ function BirthCertificate({ contract }) {
             ) : (
               <Typography variant="caption" color="error" mt={1}>
                 Aadhar is not verified!
+              </Typography>
+            )}
+            {Boolean(formik.touched.father_aadhar_no) && (
+              <Typography
+                variant="caption"
+                mt={1}
+                color="red"
+                alignSelf="start"
+              >
+                {formik.errors.father_aadhar_no}
               </Typography>
             )}
           </FormControl>
@@ -184,7 +270,21 @@ function BirthCertificate({ contract }) {
               name="child_mother_name"
               value={formik.values.child_mother_name}
               onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.child_mother_name) &&
+                Boolean(formik.errors.child_mother_name)
+              }
             />
+            {Boolean(formik.touched.child_mother_name) && (
+              <Typography
+                variant="caption"
+                mt={1}
+                color="red"
+                alignSelf="start"
+              >
+                {formik.errors.child_mother_name}
+              </Typography>
+            )}
           </FormControl>
           <FormControl variant="outlined" fullWidth>
             <InputLabel htmlFor="mother-name">Mother Aadhar No</InputLabel>
@@ -194,6 +294,10 @@ function BirthCertificate({ contract }) {
               name="mother_aadhar_no"
               value={formik.values.mother_aadhar_no}
               onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.mother_aadhar_no) &&
+                Boolean(formik.errors.mother_aadhar_no)
+              }
             />
             {isVerified ? (
               <Typography variant="caption" color="green" mt={1}>
@@ -202,6 +306,16 @@ function BirthCertificate({ contract }) {
             ) : (
               <Typography variant="caption" color="error" mt={1}>
                 Aadhar is not verified!
+              </Typography>
+            )}
+            {Boolean(formik.touched.mother_aadhar_no) && (
+              <Typography
+                variant="caption"
+                mt={1}
+                color="red"
+                alignSelf="start"
+              >
+                {formik.errors.mother_aadhar_no}
               </Typography>
             )}
           </FormControl>
@@ -213,7 +327,21 @@ function BirthCertificate({ contract }) {
               name="birth_date"
               value={formik.values.birth_date}
               onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.birth_date) &&
+                Boolean(formik.errors.birth_date)
+              }
             />
+            {Boolean(formik.touched.birth_date) && (
+              <Typography
+                variant="caption"
+                mt={1}
+                color="red"
+                alignSelf="start"
+              >
+                {formik.errors.birth_date}
+              </Typography>
+            )}
           </FormControl>
           <FormControl variant="outlined" fullWidth>
             <InputLabel htmlFor="birth_location">Birth Place</InputLabel>
@@ -223,7 +351,21 @@ function BirthCertificate({ contract }) {
               name="birth_location"
               value={formik.values.birth_location}
               onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.birth_location) &&
+                Boolean(formik.errors.birth_location)
+              }
             />
+            {Boolean(formik.touched.birth_location) && (
+              <Typography
+                variant="caption"
+                mt={1}
+                color="red"
+                alignSelf="start"
+              >
+                {formik.errors.birth_location}
+              </Typography>
+            )}
           </FormControl>
           <FormControl variant="outlined" fullWidth>
             <InputLabel htmlFor="issuedTo">Issuing To</InputLabel>
@@ -233,7 +375,21 @@ function BirthCertificate({ contract }) {
               name="issuedTo"
               value={formik.values.issuedTo}
               onChange={formik.handleChange}
+              error={
+                Boolean(formik.touched.issuedTo) &&
+                Boolean(formik.errors.issuedTo)
+              }
             />
+            {Boolean(formik.touched.issuedTo) && (
+              <Typography
+                variant="caption"
+                mt={1}
+                color="red"
+                alignSelf="start"
+              >
+                {formik.errors.issuedTo}
+              </Typography>
+            )}
           </FormControl>
           <Button variant="contained" fullWidth type="submit">
             Create Certificate
@@ -257,7 +413,7 @@ function BirthCertificate({ contract }) {
             ERROR
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Something Went Wrong!
+            Not Authorized!
           </Typography>
         </Box>
       </Modal>

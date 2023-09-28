@@ -16,7 +16,7 @@ export const signUp = async (req, res) => {
     });
     const registerUser = await User.register(newUser, password);
     req.logIn(registerUser, async (err) => {
-      if (err) err;
+      if (err) return err;
       const token = new Token({
         userId: registerUser._id,
         token: crypto.randomBytes(32).toString("hex"),
