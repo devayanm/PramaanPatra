@@ -161,21 +161,20 @@ function BirthCertificate({ contract }) {
   }, [formik.values.mother_aadhar_no]);
 
   return (
-    <Box
-      mt={5}
-      mb={5}
+    <Card
       sx={{
-        width: "100%",
+        width: 1000,
+        height: 950,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        marginBottom: 5,
+        marginTop: 5,
       }}
+      component="form"
+      onSubmit={formik.handleSubmit}
     >
-      <Card
-        sx={{ width: 500, p: 4 }}
-        component="form"
-        onSubmit={formik.handleSubmit}
-      >
+      <Box sx={{ width: "50%", p: 6 }}>
         <Typography variant="h5">Create Birth Certificate</Typography>
         <Divider sx={{ mb: 4 }} />
         <Stack spacing={3}>
@@ -395,8 +394,26 @@ function BirthCertificate({ contract }) {
             Create Certificate
           </Button>
         </Stack>
-      </Card>
-
+      </Box>
+      <Box
+        sx={{
+          width: "50%",
+          height: "100%",
+          bgcolor: "cyan",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          p: 0
+        }}
+      >
+        <Card
+          height={350}
+          width={350}
+          component="img"
+          src="/images/Birthcertificate.png"
+          sx={{ borderRadius: "50%" }}
+        />
+      </Box>
       <Modal
         open={open}
         onClose={handleClose}
@@ -417,7 +434,8 @@ function BirthCertificate({ contract }) {
           </Typography>
         </Box>
       </Modal>
-    </Box>
+    </Card>
+
   );
 }
 
