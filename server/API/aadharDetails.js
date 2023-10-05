@@ -15,4 +15,12 @@ export const aadharDetails = [
     name: "Devayan Mandal",
     aadhar_no: "444444444444",
   },
+  {
+    name: "Dinobandhu Mandal",
+    aadhar_no: "555555555555",
+  },
+  {
+    name: "Monika Mandal",
+    aadhar_no: "666666666666",
+  },
 ];

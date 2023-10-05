@@ -99,14 +99,14 @@ body {
 .hero-img img {
   height: 445px;
   border-radius: 0 0 400px 0;
-  margin-left: 205px;
+  margin-left: 250px;
 }
 
 .about {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .about-1 {
@@ -124,7 +124,7 @@ body {
 .about-3 {
   margin-top: 50px;
   margin-left: 100px;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
 }
 
 .about-txt {

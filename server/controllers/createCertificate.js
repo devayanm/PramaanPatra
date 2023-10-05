@@ -10,17 +10,6 @@ const createCertificate = async (req, res) => {
 
     await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
 
-    const pdfPath = 'birth-certificate.pdf';
-
-    await page.pdf({
-      path: pdfPath,
-      format: 'A4',
-      margin: { top: '20px', right: '20px', bottom: '20px', left: '20px' },
-      printBackground: true,
-    });
-
-    console.log(`PDF saved to: ${pdfPath}`);
-
     await browser.close();
 
     res.send("PDF generated successfully");
