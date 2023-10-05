@@ -6,7 +6,6 @@ import passport from "passport";
 import cors from "cors";
 import { User } from "./models/auth.js";
 import authRoute from "./routes/signUp.js";
-import certificateRoute from "./routes/createCertificate.js";
 import { aadharDetails } from "./API/aadharDetails.js";
 import aadharRoute from "./routes/aadhar.js";
 
@@ -44,7 +43,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use("/auth", authRoute);
-app.use("/", certificateRoute);
 app.use("/", aadharRoute);
 app.get("/aadharapi", (req, res) => res.send(aadharDetails));
 
