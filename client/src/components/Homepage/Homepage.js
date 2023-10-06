@@ -24,7 +24,7 @@ function Homepage() {
                                     </a>
                                 </div>
                             </div>
-                            <div className="col-md-6">
+                            <div className="col-md-6 colimg">
                                 <div className="hero-img">
                                     <img src="/images/hero-img.png" alt="" className="img-fluid" />
                                 </div>

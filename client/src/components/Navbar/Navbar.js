@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { auto } from '@popperjs/core';
 
 const pages = ['Solutions', 'Industries', 'Pricing', 'Resources', 'Marketplace'];
 const settings = ['Profile', 'Account', 'Logout'];
@@ -38,20 +39,7 @@ function Navbar() {
     return (
         <AppBar position="static" sx={{ backgroundColor: 'white' }}>
             <Container maxWidth="xl">
-                <Toolbar disableGutters sx={{ paddingTop: '30px', paddingBottom: '30px' }}>
-                    <Box sx={{ marginLeft: '60px' }}>
-                        <img
-                            src="/images/Logo-bg-white.png"
-                            alt="Logo"
-                            sx={{
-                                display: { xs: 'none', md: 'flex' },
-                                mr: 1,
-                                height: '30px',
-                            }}
-                        />
-                        
-                    </Box>
-
+                <Toolbar disableGutters sx={{ paddingTop: '30px', paddingBottom: '30px', display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -59,7 +47,7 @@ function Navbar() {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             onClick={handleOpenNavMenu}
-                            color="inherit"
+                            color="dodgerblue"
                             backgroundcolor="white"
                         >
                             <MenuIcon />
@@ -89,43 +77,49 @@ function Navbar() {
                             ))}
                         </Menu>
                     </Box>
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href="/"
+                    <Box
                         sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
+                            display: 'flex',
+                            justifyContent: { xs: 'flex-start', md: 'none' },
+                            alignItems: 'center',
                         }}
                     >
-                        LOGO
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, marginLeft: '200px', display: { xs: 'none', md: 'flex' } }}>
+                        <img
+                            src="/images/Logo-bg-white.png"
+                            alt="Logo"
+                            sx={{
+                                display: { xs: 'none', md: 'flex' },
+                                mr: 1,
+                                height: '30px',
+                            }}
+                        />
+                    </Box>
+
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-start' }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'grey', display: 'block' }}
+                                sx={{ my: 2, color: 'grey', display: 'block', padding: '15px' }}
                             >
                                 {page}
                             </Button>
                         ))}
                     </Box>
-
                     <Box sx={{
                         flexGrow: 0, marginRight: '50px'
                     }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar
+                                    alt="Profile"
+                                    src="/images/user.png"
+                                    sx={{
+                                        height: '60px',
+                                        width: '60px',
+                                    }}
+                                />
                             </IconButton>
                         </Tooltip>
                         <Menu

@@ -96,10 +96,21 @@ body {
   transition: background-color 0.3s ease;
 }
 
+.colimg {
+  padding-right: 0px;
+}
+
+.hero-img {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+
 .hero-img img {
-  height: 445px;
+  max-height: 445px;
   border-radius: 0 0 400px 0;
-  margin-left: 250px;
+
 }
 
 .about {
@@ -173,4 +184,126 @@ body {
   height: 300px;
   margin-top: 40px;
   margin-left: 140px;
+}
+
+
+@media (max-width: 1200px) {
+  .hero-section {
+    height: auto;
+    padding: 50px 0;
+  }
+
+  .hero-txt p {
+    font-size: 35px;
+    padding: 20px;
+    width: auto;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .hero-btn a {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .hero-img img {
+    height: auto;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .about-1,
+  .about-2,
+  .about-3 {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .about-txt {
+    height: auto;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about h2 {
+    font-size: 25px;
+  }
+
+  .about-img1 img,
+  .about-img2 img,
+  .about-img3 img {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    margin-left: 0;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .hero-txt p {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .hero-btn a {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+
+  .about h2 {
+    font-size: 24px;
+  }
+
+  .about-txt p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: auto;
+  }
+
+  .hero-txt p {
+    font-size: 24px;
+    padding: 20px;
+    width: auto;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .hero-btn a {
+    font-size: 16px;
+  }
+
+  .hero-img img {
+    height: auto;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .about-1,
+  .about-2,
+  .about-3 {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .about-txt {
+    height: auto;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about h2 {
+    font-size: 20px;
+  }
+
+  .about-txt p {
+    font-size: 14px;
+  }
 }
