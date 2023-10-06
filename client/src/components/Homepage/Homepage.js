@@ -8,8 +8,9 @@ function Homepage() {
     const navigate = useNavigate();
 
     return (
-        <div style={{ flexGrow: 1,
-        height: '100%',
+        <div style={{
+            flexGrow: 1,
+            height: '100%',
         }}>
             <Grid container
                 style={{
