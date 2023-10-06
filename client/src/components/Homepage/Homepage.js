@@ -1,113 +1,224 @@
 import React from 'react';
-import './Homepage.css'
-import { useNavigate } from "react-router-dom";
-
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 function Homepage() {
     const navigate = useNavigate();
+
     return (
-        <>
-            <main>
-                <section className="hero-section">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="hero-txt">
-                                    <p className="display-4">
-                                        Your <span className="text-success">Certificates</span>, Our <span className="text-success">Assurance</span>,
-                                        Welcome to the <span className="text-success">Future</span>
-                                    </p>
-                                </div>
-                                <div className="hero-btn mt-4">
-                                    <a href="#create-certificate" className="btn btn-success btn-lg">
-                                        Get Certified
-                                    </a>
-                                </div>
-                            </div>
-                            <div className="col-md-6 colimg">
-                                <div className="hero-img">
-                                    <img src="/images/hero-img.png" alt="" className="img-fluid" />
-                                </div>
-                            </div>
+        <div style={{ flexGrow: 1,
+        height: '100%',
+        }}>
+            <Grid container
+                style={{
+                    backgroundColor: 'rgba(17, 236, 157, 0.16)',
+                    borderRadius: '0 0 400px 0',
+                    marginTop: '10px',
+                    height: '450px'
+                }}>
+                <Grid item xs={12} md={6} elevation={3} >
+                    <Typography variant="h2" style={{
+                        fontSize: '45px',
+                        padding: '40px',
+                        width: '500px',
+                        lineHeight: '60px',
+                        marginLeft: '150px',
+                    }}>
+                        Your <span className="text-success">Certificates</span>, Our{' '}
+                        <span className="text-success">Assurance</span>, Welcome to the{' '}
+                        <span className="text-success">Future</span>
+                    </Typography>
+                    <div style={{
+                        marginTop: '20px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                    }}>
+                        <Button
+                            variant="contained"
+                            color="success"
+                            size="large"
+                            onClick={() => navigate('#create-certificate')}
+                        >
+                            Get Certified
+                        </Button>
+                    </div>
+                </Grid>
+                <Grid item xs={12} md={6} style={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
+                    height: '100%',
+                }}>
+                    <img
+                        src="/images/hero-img.png"
+                        alt=""
+                        style={{
+                            maxHeight: '450px',
+                            borderRadius: '0 0 400px 0',
+                        }}
+                    />
+                </Grid>
+            </Grid>
+            <Grid container-about style={{
+                padding: '80px',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+            }}>
+                <Grid item xs={12} md={6} elevation={3} >
+                    <div style={{
+                        backgroundColor: 'rgba(17, 236, 157, 0.16)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: '50px',
+                        height: '300px',
+                        width: '500px',
+                        lineHeight: '50px',
+                    }}>
+                        <Typography variant="h2" style={{
+                            fontSize: '30px',
+                        }}>
+                            Birth Certificates
+                        </Typography>
+                        <Typography variant="p" style={{
+                            marginBottom: '10px',
+                            fontSize: '18px',
+                        }}>
+                            Create your Birth Certificate here
+                        </Typography>
+                        <div style={{ marginTop: '10px' }}>
+                            <Button
+                                variant="contained"
+                                color="success"
+                                onClick={() => navigate('/create-birth-certificate')}
+                            >
+                                Birth Certificate
+                            </Button>
                         </div>
                     </div>
-                </section>
-                <section className="about-section">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="about-1 mt-5">
-                                    <div className="about-txt p-4">
-                                        <h2>Birth Certificates</h2>
-                                        <p>Create your Birth Certificate here</p>
-                                        <div className="about-btn1 mt-3">
-                                            <button
-                                                onClick={() => navigate("/create-birth-certificate")}
-                                                className="btn btn-success"
-                                            >
-                                                Birth Certificate
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="about-img1">
-                                    <img src="/images/about-img1.png" alt="" className="img-fluid rounded" />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="about-img2">
-                                    <img src="/images/about-img2.png" alt="" className="img-fluid rounded" />
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="about-2 mt-5">
-                                    <div className="about-txt p-4">
-                                        <h2>Degree Certificates</h2>
-                                        <p>Create your Degree Certificate here</p>
-                                        <div className="about-btn2 mt-3">
-                                            <button
-                                                onClick={() => navigate("/")}
-                                                className="btn btn-success"
-                                            >
-                                                Degree Certificate
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="about-3 mt-5">
-                                    <div className="about-txt p-4">
-                                        <h2>Property Certificates</h2>
-                                        <p>Create your Property Certificate here</p>
-                                        <div className="about-btn3 mt-3">
-                                            <button
-                                                onClick={() => navigate("/LandDeed")}
-                                                className="btn btn-success"
-                                            >
-                                                Property Certificate
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-md-6">
-                                <div className="about-img3">
-                                    <img src="/images/about-img3.png" alt="" className="img-fluid rounded" />
-                                </div>
-                            </div>
+                </Grid>
+                <Grid item xs={12} md={6} >
+                    <img
+                        src="/images/about-img1.png"
+                        alt=""
+                        style={{
+                            width: '400px',
+                            height: '300px',
+                        }}
+                    />
+                </Grid>
+            </Grid>
+            <Grid container-about style={{
+                padding: '80px',
+                display: 'flex',
+                flexDirection: 'row-reverse',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+            }}>
+                <Grid item xs={12} md={6} elevation={3} >
+                    <div style={{
+                        backgroundColor: 'rgba(17, 236, 157, 0.16)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: '50px',
+                        height: '300px',
+                        width: '500px',
+                        lineHeight: '50px',
+                    }}>
+                        <Typography variant="h2" style={{
+                            fontSize: '30px',
+                        }}>
+                            Degree Certificates
+                        </Typography>
+                        <Typography variant="p" style={{
+                            marginBottom: '10px',
+                            fontSize: '18px',
+                        }}>
+                            Create your Degree Certificate here
+                        </Typography>
+                        <div style={{ marginTop: '10px' }}>
+                            <Button
+                                variant="contained"
+                                color="success"
+                                onClick={() => navigate('/create-degree-certificate')}
+                            >
+                                Degree Certificate
+                            </Button>
                         </div>
                     </div>
-                </section>
-            </main>
-        </>
-    )
+                </Grid>
+                <Grid item xs={12} md={6} >
+                    <img
+                        src="/images/about-img2.png"
+                        alt=""
+                        style={{
+                            width: '400px',
+                            height: '300px',
+                        }}
+                    />
+                </Grid>
+            </Grid>
+            <Grid container-about style={{
+                padding: '80px',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+            }}>
+                <Grid item xs={12} md={6} elevation={3} >
+                    <div style={{
+                        backgroundColor: 'rgba(17, 236, 157, 0.16)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: '50px',
+                        height: '300px',
+                        width: '500px',
+                        lineHeight: '50px',
+                    }}>
+                        <Typography variant="h2" style={{
+                            fontSize: '30px',
+                        }}>
+                            Property Certificates
+                        </Typography>
+                        <Typography variant="p" style={{
+                            marginBottom: '10px',
+                            fontSize: '18px',
+                        }}>
+                            Create your Property Certificate here
+                        </Typography>
+                        <div style={{ marginTop: '10px' }}>
+                            <Button
+                                variant="contained"
+                                color="success"
+                                onClick={() => navigate('/create-property-certificate')}
+                            >
+                                Property Certificate
+                            </Button>
+                        </div>
+                    </div>
+                </Grid>
+                <Grid item xs={12} md={6} >
+                    <img
+                        src="/images/about-img3.png"
+                        alt=""
+                        style={{
+                            width: '400px',
+                            height: '300px',
+                        }}
+                    />
+                </Grid>
+            </Grid>
+        </div>
+    );
 }
 
 export default Homepage;
