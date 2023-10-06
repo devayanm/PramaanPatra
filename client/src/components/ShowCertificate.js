@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Box, Card, Divider, Stack, Typography } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+import { Box, Button, Card, Divider, Stack, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
+import html2canvas from "html2canvas";
+import jspdf from "jspdf";
 
 function ShowCertificate({ contract }) {
   const [data, setData] = useState(null);
   const params = useParams();
+  const ref = useRef();
 
   useEffect(() => {
     const fetchedData = async () => {
@@ -18,17 +21,46 @@ function ShowCertificate({ contract }) {
     fetchedData();
   }, [params]);
 
+  const download = async () => {
+    const input = ref.current;
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jspdf("p", "mm", "a4", true);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+      const imgX = (pdfWidth - imgWidth * ratio) / 2;
+      const imgY = 30;
+      pdf.addImage(
+        imgData,
+        "PNG",
+        imgX,
+        imgY,
+        imgWidth * ratio,
+        imgHeight * ratio
+      );
+      pdf.save("BirthCertificate.pdf");
+    });
+  };
+
   return (
     <>
       {data !== null && (
         <Box
           sx={{
-            width: "100vw",
+            width: "100%",
             display: "flex",
             justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+            mb: 8,
           }}
         >
           <Card
+            component="div"
+            ref={ref}
             sx={{
               width: "40rem",
               p: 4,
@@ -70,6 +102,9 @@ function ShowCertificate({ contract }) {
               />
             </Stack>
           </Card>
+          <Button variant="contained" onClick={download}>
+            Download
+          </Button>
         </Box>
       )}
     </>

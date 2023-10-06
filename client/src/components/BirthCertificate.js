@@ -12,7 +12,6 @@ import {
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
-import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 import { useEffect, useState } from "react";
@@ -84,27 +83,6 @@ function BirthCertificate({ contract }) {
       navigate(
         `/certificate/${formik.values.issuedTo}/birth-certificate/${request.hash}`
       );
-      const formdata = new FormData();
-      for (let value in values) {
-        formdata.append(value, values[value]);
-      }
-      await axios({
-        method: "post",
-        url: "http://localhost:8080/create-certificate",
-        data: formdata,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then(() =>
-          axios.get("http://localhost:8080/get-certificate", {
-            responseType: "blob",
-          })
-        )
-        .then((res) => {
-          const pdfBlob = new Blob([res.data], { type: "application/pdf" });
-          saveAs(pdfBlob, "birth-certificate.pdf");
-        });
     } catch (error) {
       handleOpen();
     }
@@ -403,7 +381,7 @@ function BirthCertificate({ contract }) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          p: 0
+          p: 0,
         }}
       >
         <Card
@@ -435,7 +413,6 @@ function BirthCertificate({ contract }) {
         </Box>
       </Modal>
     </Card>
-
   );
 }
 
