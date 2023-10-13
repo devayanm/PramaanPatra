@@ -1,9 +1,8 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
@@ -11,28 +10,41 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { auto } from '@popperjs/core';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import HomeIcon from '@mui/icons-material/Home';
+import WorkIcon from '@mui/icons-material/Work';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import StoreIcon from '@mui/icons-material/Store';
 
-const pages = ['Solutions', 'Industries', 'Pricing', 'Resources', 'Marketplace'];
+const pages = [
+    { text: 'Home', icon: <HomeIcon /> },
+    { text: 'Industries', icon: <WorkIcon /> },
+    { text: 'Pricing', icon: <LocalAtmIcon /> },
+    { text: 'Resources', icon: <LibraryBooksIcon /> },
+    { text: 'Marketplace', icon: <StoreIcon /> },
+];
+
 const settings = ['Profile', 'Account', 'Logout'];
 
 function Navbar() {
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
-
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const toggleSidebar = () => {
+        setIsSidebarOpen(!isSidebarOpen);
     };
 
     return (
@@ -43,38 +55,25 @@ function Navbar() {
                         <IconButton
                             size="large"
                             aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="dodgerblue"
-                            backgroundcolor="white"
+                            onClick={toggleSidebar}
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
+                        <Drawer
+                            open={isSidebarOpen}
+                            onClose={toggleSidebar}
+                            anchor="left"
+                            sx={{ width: 240 }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                            <List>
+                                {pages.map((page) => (
+                                    <ListItem button key={page.text} onClick={toggleSidebar}>
+                                        <ListItemIcon>{page.icon}</ListItemIcon>
+                                        <ListItemText primary={page.text} />
+                                    </ListItem>
+                                ))}
+                            </List>
+                        </Drawer>
                     </Box>
                     <Box
                         sx={{
@@ -98,11 +97,10 @@ function Navbar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-start' }}>
                         {pages.map((page) => (
                             <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
+                                key={page.text}
                                 sx={{ my: 2, color: 'grey', display: 'block', padding: '15px' }}
                             >
-                                {page}
+                                {page.text}
                             </Button>
                         ))}
                     </Box>
@@ -139,7 +137,7 @@ function Navbar() {
                         >
                             {settings.map((setting) => (
                                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                    {setting}
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -149,4 +147,5 @@ function Navbar() {
         </AppBar>
     );
 }
+
 export default Navbar;
