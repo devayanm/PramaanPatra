@@ -146,6 +146,49 @@ Contributions to PramaanPatra are welcome! To contribute, follow these steps:
 
 For more details, check out the [Contribution Guidelines](CONTRIBUTING.md).
 
+## Contributors
+
+<div align="center">
+
+[![Devayan Mandal](https://avatars.githubusercontent.com/u/devayanm?s=100)](https://github.com/devayanm)
+
+**Devayan Mandal**
+- GitHub: [@devayanm](https://github.com/devayanm)
+- Contribution: Frontend development, UI/UX design
+
+[![Ashesh Mandal](https://avatars.githubusercontent.com/u/asheshmandal2003?s=100)](https://github.com/asheshmandal2003)
+
+**Ashesh Mandal**
+- GitHub: [@ashesh](https://github.com/asheshmandal2003)
+- Contribution: Smart contract development, Blockchain integration
+
+<!-- [![Asish Das](https://avatars.githubusercontent.com/u/your-user-id?s=100)](https://github.com/asish)
+
+**Asish Das**
+- GitHub: [@asish](https://github.com/asish)
+- Contribution: Backend development, Database management
+
+[![Dibbendu Malakar](https://avatars.githubusercontent.com/u/your-user-id?s=100)](https://github.com/dibbendu)
+
+**Dibbendu Malakar**
+- GitHub: [@dibbendu](https://github.com/dibbendu)
+- Contribution: UI/UX design
+
+[![Ritu Shaw](https://avatars.githubusercontent.com/u/your-user-id?s=100)](https://github.com/ritu)
+
+**Ritu Shaw**
+- GitHub: [@ritu](https://github.com/ritu)
+- Contribution: UI/UX design
+
+[![Sayantika Chatterjee](https://avatars.githubusercontent.com/u/your-user-id?s=100)](https://github.com/sayantika)
+
+**Sayantika Chatterjee**
+- GitHub: [@sayantika](https://github.com/sayantika)
+- Contribution: UI/UX design -->
+
+</div>
+
+
 ## License
 
 This project is licensed under the [CC BY-NC-ND 4.0 License](LICENSE.md) - see the [LICENSE.txt](LICENSE.md) file for details.
