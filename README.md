@@ -2,7 +2,7 @@
 
 # PramaanPatra - Decentralized Certificate Management System
 
-![PramaanPatra Logo](link-to-logo.png)
+![PramaanPatra Logo](client/public/images/Logo.ico)
 
 [![GitHub last commit](https://img.shields.io/github/last-commit/devayanm/PramaanPatra)](https://github.com/devayanm/PramaanPatra)
 [![GitHub issues](https://img.shields.io/github/issues/devayanm/PramaanPatra)](https://github.com/devayanm/PramaanPatra/issues)
