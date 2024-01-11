@@ -4,9 +4,9 @@
 
 ![PramaanPatra Logo](link-to-logo.png)
 
-[![GitHub last commit](https://img.shields.io/github/last-commit/your-username/your-repo)](https://github.com/your-username/your-repo)
-[![GitHub issues](https://img.shields.io/github/issues/your-username/your-repo)](https://github.com/your-username/your-repo/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/your-username/your-repo)](https://github.com/your-username/your-repo/pulls)
+[![GitHub last commit](https://img.shields.io/github/last-commit/devayanm/PramaanPatra)](https://github.com/devayanm/PramaanPatra)
+[![GitHub issues](https://img.shields.io/github/issues/devayanm/PramaanPatra)](https://github.com/devayanm/PramaanPatra/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/devayanm/PramaanPatra)](https://github.com/devayanm/PramaanPatra/pulls)
 
 </div>
 
