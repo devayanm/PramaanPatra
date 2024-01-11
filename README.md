@@ -150,13 +150,13 @@ For more details, check out the [Contribution Guidelines](CONTRIBUTING.md).
 
 <div align="center">
 
-[![Devayan Mandal](https://avatars.githubusercontent.com/u/devayanm?s=100)](https://github.com/devayanm)
+[![Devayan Mandal](https://avatars.githubusercontent.com/devayanm?s=100)](https://github.com/devayanm)
 
 **Devayan Mandal**
 - GitHub: [@devayanm](https://github.com/devayanm)
 - Contribution: Frontend development, UI/UX design
 
-[![Ashesh Mandal](https://avatars.githubusercontent.com/u/asheshmandal2003?s=100)](https://github.com/asheshmandal2003)
+[![Ashesh Mandal](https://avatars.githubusercontent.com/asheshmandal2003?s=100)](https://github.com/asheshmandal2003)
 
 **Ashesh Mandal**
 - GitHub: [@ashesh](https://github.com/asheshmandal2003)
