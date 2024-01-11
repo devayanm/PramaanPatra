@@ -148,7 +148,7 @@ For more details, check out the [Contribution Guidelines](CONTRIBUTING.md).
 
 ## License
 
-PramaanPatra is licensed under the [MIT License](LICENSE).
+This project is licensed under the [CC BY-NC-ND 4.0 License](LICENSE.md) - see the [LICENSE.txt](LICENSE.md) file for details.
 
 
 <div align="center">
