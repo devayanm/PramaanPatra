@@ -10,8 +10,14 @@ import {
   OutlinedInput,
   Stack,
   Typography,
+  Tooltip,
 } from "@mui/material";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  Visibility,
+  VisibilityOff,
+  Info,
+  ArrowBack,
+} from "@mui/icons-material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +25,8 @@ import axios from "axios";
 
 function SignUp() {
   const [visibility, setVisibility] = useState(false);
+  const [info, setInfo] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -41,8 +49,7 @@ function SignUp() {
         .max(15, "Last name can contain maximum 15 characters!"),
       aadharNo: yup
         .string()
-        .min(12, "Your aadhar no must contain 12 digits!")
-        .max(12, "Your aadhar no must contain 12 digits!")
+        .length(12, "Your Aadhar number must be 12 digits!")
         .required("Aadhar no is required!"),
       employeeId: yup.string().required("Employee ID is required!"),
       email: yup
@@ -55,10 +62,37 @@ function SignUp() {
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
           "Please create a stronger password"
         )
-        .min(8, "Password must contain 8 characters!")
+        .min(8, "Password must contain at least 8 characters!")
         .required("Password is Required!"),
     }),
   });
+
+  const handleMouseEnter = (field) => {
+    switch (field) {
+      case "firstName":
+        setInfo("First name can contain a maximum of 15 characters.");
+        break;
+      case "lastName":
+        setInfo("Last name can contain a maximum of 15 characters.");
+        break;
+      case "aadharNo":
+        setInfo("Your Aadhar number must be exactly 12 digits.");
+        break;
+      case "employeeId":
+        setInfo("Employee ID is a required field.");
+        break;
+      case "email":
+        setInfo("Enter a valid email address.");
+        break;
+      case "password":
+        setInfo(
+          "Password must contain at least 8 characters, including upper/lowercase letters, numbers, and special characters."
+        );
+        break;
+      default:
+        setInfo("");
+    }
+  };
 
   async function signUp(values, onSubmitProps) {
     await axios
@@ -86,8 +120,32 @@ function SignUp() {
       )
       .catch((e) => console.log(e));
   }
+
   return (
-    <Card sx={{ width: "70%", mt: 5, mb: 5, display: "flex" }}>
+    <Card
+      sx={{
+        width: "70%",
+        mt: 5,
+        mb: 5,
+        display: "flex",
+        position: "relative",
+      }}
+    >
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => navigate("/")}
+        sx={{
+          position: "absolute",
+          top: 20,
+          left: 20,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <ArrowBack sx={{ mr: 1 }} />
+        Back to Home
+      </Button>
       <Box
         sx={{
           width: "50%",
@@ -123,6 +181,18 @@ function SignUp() {
                   Boolean(formik.touched.firstName) &&
                   Boolean(formik.errors.firstName)
                 }
+                endAdornment={
+                  <InputAdornment position="end">
+                    <Tooltip title={info} placement="top" arrow>
+                      <IconButton
+                        onMouseEnter={() => handleMouseEnter("firstName")}
+                        onMouseLeave={() => setInfo("")}
+                      >
+                        <Info />
+                      </IconButton>
+                    </Tooltip>
+                  </InputAdornment>
+                }
               />
               {Boolean(formik.touched.firstName) && (
                 <Typography
@@ -146,6 +216,18 @@ function SignUp() {
                 error={
                   Boolean(formik.touched.lastName) &&
                   Boolean(formik.errors.lastName)
+                }
+                endAdornment={
+                  <InputAdornment position="end">
+                    <Tooltip title={info} placement="top" arrow>
+                      <IconButton
+                        onMouseEnter={() => handleMouseEnter("lastName")}
+                        onMouseLeave={() => setInfo("")}
+                      >
+                        <Info />
+                      </IconButton>
+                    </Tooltip>
+                  </InputAdornment>
                 }
               />
               {Boolean(formik.touched.lastName) && (
@@ -172,6 +254,18 @@ function SignUp() {
                 Boolean(formik.touched.aadharNo) &&
                 Boolean(formik.errors.aadharNo)
               }
+              endAdornment={
+                <InputAdornment position="end">
+                  <Tooltip title={info} placement="top" arrow>
+                    <IconButton
+                      onMouseEnter={() => handleMouseEnter("aadharNo")}
+                      onMouseLeave={() => setInfo("")}
+                    >
+                      <Info />
+                    </IconButton>
+                  </Tooltip>
+                </InputAdornment>
+              }
             />
             {Boolean(formik.touched.aadharNo) && (
               <Typography variant="body2" mt={1} color="red" alignSelf="start">
@@ -191,6 +285,18 @@ function SignUp() {
                 Boolean(formik.touched.employeeId) &&
                 Boolean(formik.errors.employeeId)
               }
+              endAdornment={
+                <InputAdornment position="end">
+                  <Tooltip title={info} placement="top" arrow>
+                    <IconButton
+                      onMouseEnter={() => handleMouseEnter("employeeId")}
+                      onMouseLeave={() => setInfo("")}
+                    >
+                      <Info />
+                    </IconButton>
+                  </Tooltip>
+                </InputAdornment>
+              }
             />
             {Boolean(formik.touched.employeeId) && (
               <Typography variant="body2" mt={1} color="red" alignSelf="start">
@@ -209,6 +315,18 @@ function SignUp() {
               error={
                 Boolean(formik.touched.email) && Boolean(formik.errors.email)
               }
+              endAdornment={
+                <InputAdornment position="end">
+                  <Tooltip title={info} placement="top" arrow>
+                    <IconButton
+                      onMouseEnter={() => handleMouseEnter("email")}
+                      onMouseLeave={() => setInfo("")}
+                    >
+                      <Info />
+                    </IconButton>
+                  </Tooltip>
+                </InputAdornment>
+              }
             />
             {Boolean(formik.touched.email) && (
               <Typography variant="body2" mt={1} color="red" alignSelf="start">
@@ -217,7 +335,7 @@ function SignUp() {
             )}
           </FormControl>
           <FormControl fullWidth>
-            <InputLabel>Passsword</InputLabel>
+            <InputLabel>Password</InputLabel>
             <OutlinedInput
               label="Password"
               name="password"
@@ -234,6 +352,14 @@ function SignUp() {
                   <IconButton onClick={() => setVisibility(!visibility)}>
                     {visibility ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
+                  <Tooltip title={info} placement="top" arrow>
+                    <IconButton
+                      onMouseEnter={() => handleMouseEnter("password")}
+                      onMouseLeave={() => setInfo("")}
+                    >
+                      <Info />
+                    </IconButton>
+                  </Tooltip>
                 </InputAdornment>
               }
             />
@@ -243,8 +369,13 @@ function SignUp() {
               </Typography>
             )}
           </FormControl>
-          <Button variant="contained" type="submit" fullWidth>
-            Sign up
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            disabled={loading}
+          >
+            {loading ? "Signing up..." : "Sign up"}
           </Button>
         </Stack>
         <Typography mt={5}>

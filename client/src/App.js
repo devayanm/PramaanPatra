@@ -11,11 +11,14 @@ import Verified from "./components/auth/Verified";
 import Home from "./components/Home/Home";
 import SignIn from "./components/auth/SignIn";
 import LandDeed from "./components/Forms/LandDeed";
+import { AuthProvider } from "./components/auth/AuthContext";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const [account, setAccount] = useState("");
   const [contract, setContract] = useState(null);
   const [provider, setProvider] = useState(null);
+
   useEffect(() => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const loadProvider = async () => {
@@ -44,28 +47,46 @@ function App() {
     };
     provider && loadProvider();
   }, []);
+
   return (
-    <Box
-      className="App"
-      sx={{ width: "100%", display: "flex", justifyContent: "center" }}
-    >
-      <Routes>
-        <Route path="/auth/signup" element={<SignUp />} />
-        <Route path="/notify" element={<Notify />} />
-        <Route path="/auth/:id/verify/:token" element={<Verified />} />
-        <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/create-birth-certificate"
-          element={<BirthCertificate contract={contract} />}
-        />
-        <Route
-          path="/certificate/:id/birth-certificate/:txid"
-          element={<ShowCertificate contract={contract} />}
-        />
-        <Route path="/LandDeed" element={<LandDeed />} />
-      </Routes>
-    </Box>
+    <AuthProvider>
+      <Box
+        className="App"
+        sx={{ width: "100%", display: "flex", justifyContent: "center" }}
+      >
+        <Routes>
+          <Route path="/auth/signup" element={<SignUp />} />
+          <Route path="/notify" element={<Notify />} />
+          <Route path="/auth/:id/verify/:token" element={<Verified />} />
+          <Route path="/auth/signin" element={<SignIn />} />
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/create-birth-certificate"
+            element={
+              <ProtectedRoute>
+                <BirthCertificate contract={contract} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/certificate/:id/birth-certificate/:txid"
+            element={
+              <ProtectedRoute>
+                <ShowCertificate contract={contract} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/LandDeed"
+            element={
+              <ProtectedRoute>
+                <LandDeed />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </Box>
+    </AuthProvider>
   );
 }
 
