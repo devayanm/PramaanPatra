@@ -7,6 +7,9 @@ module.exports = {
     hardhat: {
       chainId: 31337,
     },
+    sepolia: {
+      url: process.env.SE_POLIA_URL,
+    },
   },
   paths: {
     artifacts: "./client/src/artifacts",

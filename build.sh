@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 npm install
 
 # Step 2: Compile and deploy smart contracts on Goerli testnet
-npx hardhat run --network goerli scripts/deploy.js
+npx hardhat run --network sepolia scripts/deploy.js
 
 # Step 3: Build the frontend
 cd client
