@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ensure script starts in the directory it's located
-cd "$(dirname "$0")"
+cd ..
 
 # Step 1: Install root dependencies (if any)
 npm install
