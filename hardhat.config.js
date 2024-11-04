@@ -9,6 +9,8 @@ module.exports = {
     },
     sepolia: {
       url: process.env.SE_POLIA_URL,
+      accounts: [process.env.PRIVATE_KEY],
+
     },
   },
   paths: {
