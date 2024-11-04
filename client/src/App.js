@@ -20,32 +20,41 @@ function App() {
   const [provider, setProvider] = useState(null);
 
   useEffect(() => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    if (typeof window.ethereum === "undefined") {
+      alert("MetaMask is not installed in your browser :(");
+      console.error("MetaMask is not detected.");
+      return;
+    }
+
     const loadProvider = async () => {
       try {
-        if (provider) {
-          window.ethereum.on("accountsChanged", () => window.location.reload());
-          window.ethereum.on("chainChanged", () => window.location.reload());
-          await provider.send("eth_requestAccounts", []);
-          const signer = provider.getSigner();
-          const address = await signer.getAddress();
-          setAccount(address);
-          let contractaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-          const contract = new ethers.Contract(
-            contractaddress,
-            certificate.abi,
-            signer
-          );
-          setContract(contract);
-          setProvider(provider);
-        } else {
-          alert("Metamask is not installed in your browser :(");
-        }
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        setProvider(provider);
+
+        window.ethereum.on("accountsChanged", () => window.location.reload());
+        window.ethereum.on("chainChanged", () => window.location.reload());
+
+        await provider.send("eth_requestAccounts", []);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        setAccount(address);
+
+        // Initialize the contract
+        const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+        const contractInstance = new ethers.Contract(
+          contractAddress,
+          certificate.abi,
+          signer
+        );
+        setContract(contractInstance);
+
+        console.log("Provider and contract loaded successfully.");
       } catch (error) {
-        console.log(error);
+        console.error("Error loading provider or contract:", error);
       }
     };
-    provider && loadProvider();
+
+    loadProvider();
   }, []);
 
   return (
