@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import certificate from "./artifacts/contracts/Certificate.sol/Certificate.json";
-import BirthCertificate from "./components/BirthCertificate";
+import BirthCertificate from "./components/Forms/BirthCertificate";
 import ShowCertificate from "./components/ShowCertificate";
 import { ethers } from "ethers";
 import { Routes, Route } from "react-router-dom";
@@ -86,10 +86,18 @@ function App() {
             }
           />
           <Route
-            path="/LandDeed"
+            path="/create-landdeed-certificate"
             element={
               <ProtectedRoute>
-                <LandDeed />
+                <LandDeed contract={contract}/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/certificate/:id/landdeed-certificate/:txid"
+            element={
+              <ProtectedRoute>
+                <ShowCertificate contract={contract} />
               </ProtectedRoute>
             }
           />
