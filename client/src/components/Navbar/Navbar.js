@@ -32,7 +32,6 @@ const authenticatedPages = [
 ];
 
 const unauthenticatedPages = [{ text: "Home", icon: <HomeIcon />, path: "/" }];
-
 const settings = ["Profile", "Account", "Logout"];
 
 function Navbar() {
@@ -60,23 +59,23 @@ function Navbar() {
   const pages = isAuthenticated ? authenticatedPages : unauthenticatedPages;
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "white" }}>
+    <AppBar
+      position="static"
+      sx={{ backgroundColor: "white", boxShadow: "none" }}
+    >
       <Container maxWidth="xl">
         <Toolbar
           disableGutters
           sx={{
-            paddingTop: "30px",
-            paddingBottom: "30px",
+            paddingTop: "20px",
+            paddingBottom: "20px",
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              onClick={toggleSidebar}
-            >
+          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <IconButton size="large" onClick={toggleSidebar}>
               <MenuIcon />
             </IconButton>
             <Drawer
@@ -95,23 +94,21 @@ function Navbar() {
               </List>
             </Drawer>
           </Box>
+
           <Box
             sx={{
-              flexGrow: 1,
               display: "flex",
-              justifyContent: { xs: "flex-start", md: "none" },
               alignItems: "center",
+              flexGrow: 1,
             }}
           >
-            <img
-              src="/images/Logo-bg-white.png"
-              alt="Logo"
-              sx={{
-                display: { xs: "none", md: "flex" },
-                mr: 1,
-                height: "30px",
-              }}
-            />
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <img
+                src="/images/Logo-bg-white.png"
+                alt="Logo"
+                style={{ height: "80px", width: "auto" }}
+              />
+            </Link>
           </Box>
 
           <Box
@@ -119,12 +116,20 @@ function Navbar() {
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
               justifyContent: "flex-start",
+              gap: "15px",
             }}
           >
             {pages.map((page) => (
               <Button
                 key={page.text}
-                sx={{ my: 2, color: "grey", display: "block", padding: "15px" }}
+                sx={{
+                  my: 2,
+                  color: "grey",
+                  fontWeight: "bold",
+                  textTransform: "none",
+                  fontSize: "1rem",
+                  padding: "15px",
+                }}
                 component={Link}
                 to={page.path}
               >
@@ -132,33 +137,30 @@ function Navbar() {
               </Button>
             ))}
           </Box>
+
           {isAuthenticated ? (
-            <Box sx={{ flexGrow: 0, marginRight: "50px" }}>
+            <Box
+              sx={{
+                flexGrow: 0,
+                display: "flex",
+                alignItems: "center",
+                marginRight: "20px",
+              }}
+            >
               <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <IconButton onClick={handleOpenUserMenu}>
                   <Avatar
                     alt="Profile"
                     src="/images/user.png"
-                    sx={{
-                      height: "60px",
-                      width: "60px",
-                    }}
+                    sx={{ height: "50px", width: "50px" }}
                   />
                 </IconButton>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px" }}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                transformOrigin={{ vertical: "top", horizontal: "right" }}
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
@@ -175,16 +177,33 @@ function Navbar() {
               </Menu>
             </Box>
           ) : (
-            <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                flexGrow: 0,
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
               <Button
-                sx={{ my: 2, color: "grey", display: "block", padding: "15px" }}
+                sx={{
+                  my: 2,
+                  color: "grey",
+                  fontWeight: "bold",
+                  padding: "10px 15px",
+                }}
                 component={Link}
                 to="/auth/signin"
               >
                 Sign In
               </Button>
               <Button
-                sx={{ my: 2, color: "grey", display: "block", padding: "15px" }}
+                sx={{
+                  my: 2,
+                  color: "grey",
+                  fontWeight: "bold",
+                  padding: "10px 15px",
+                }}
                 component={Link}
                 to="/auth/signup"
               >

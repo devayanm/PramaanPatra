@@ -1,141 +1,166 @@
-import React from 'react';
-import { Container, Grid, Typography, Link } from '@mui/material';
-import { styled } from '@mui/system';
+import React from "react";
+import { Container, Grid, Typography, Link } from "@mui/material";
+import { styled } from "@mui/system";
 import {
-    Facebook,
-    Twitter,
-    LinkedIn,
-    Instagram,
-    Map as MapIcon,
-    Phone as PhoneIcon,
-    Email as EmailIcon,
-} from '@mui/icons-material';
+  Facebook,
+  Twitter,
+  LinkedIn,
+  Instagram,
+  Map as MapIcon,
+  Phone as PhoneIcon,
+  Email as EmailIcon,
+} from "@mui/icons-material";
 
 const FooterContainer = styled(Container)(({ theme }) => ({
-    backgroundColor: '#414141',
-    textAlign: 'left',
-    fontFamily: 'sans-serif',
-    fontWeight: 'bold',
-    fontSize: '16px',
-    padding: '50px',
-    marginTop: '-150px',
+  backgroundColor: "#2b2b2b",
+  padding: "50px 20px",
+  marginTop: "-100px",
+  color: "#ffffff",
 }));
 
-const About = styled('div')({
-    lineHeight: '20px',
-    color: '#ffffff',
-    fontSize: '13px',
-    fontWeight: 'normal',
-    margin: 0,
+const About = styled("div")({
+  lineHeight: "24px",
+  fontSize: "15px",
+  marginBottom: "20px",
 });
 
-const AboutTitle = styled('span')({
-    display: 'block',
-    color: '#ffffff',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    marginBottom: '20px',
+const AboutTitle = styled("h2")({
+  fontSize: "18px",
+  fontWeight: "bold",
+  marginBottom: "15px",
 });
 
-const Icons = styled('div')({
-    marginTop: '25px',
+const Icons = styled("div")({
+  marginTop: "20px",
+  display: "flex",
+  gap: "10px",
 });
 
 const Icon = styled(Link)(({ theme }) => ({
-    display: 'inline-block',
-    width: '35px',
-    height: '35px',
-    cursor: 'pointer',
-    backgroundColor: '#33383b',
-    borderRadius: '2px',
-    fontSize: '20px',
-    color: '#ffffff',
-    textAlign: 'center',
-    lineHeight: '35px',
-    marginRight: '3px',
-    marginBottom: '5px',
+  display: "inline-flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "35px",
+  height: "35px",
+  borderRadius: "50%",
+  backgroundColor: "#414141",
+  color: "#ffffff",
+  transition: "background-color 0.3s, transform 0.3s",
+  "&:hover": {
+    backgroundColor: "#0099ff",
+    transform: "scale(1.1)",
+  },
 }));
 
-const CenterContent = styled('div')({
-    display: 'inline-block',
-    color: '#ffffff',
-    verticalAlign: 'middle',
-    margin: 0,
+const ContactItem = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  marginBottom: "10px",
 });
 
-const RightContent = styled('div')({
-    display: 'block',
-    color: '#ffffff',
-    margin: '20px 0 12px',
-    padding: 0,
+const CenterContent = styled(Typography)({
+  marginLeft: "10px",
+});
+
+const RightContent = styled("div")({
+  marginTop: "15px",
+  lineHeight: "2",
 });
 
 const RightLink = styled(Link)({
-    display: 'inline-block',
-    lineHeight: '1.8',
-    textDecoration: 'none',
-    color: 'inherit',
+  color: "#ffffff",
+  fontSize: "14px",
+  textDecoration: "none",
+  transition: "color 0.3s",
+  "&:hover": {
+    color: "#0099ff",
+  },
 });
 
-const RightLinkHover = styled(RightLink)({
-    color: '#0099ff',
-});
-
-const Name = styled('div')({
-    color: '#0099ff',
-    fontSize: '14px',
-    fontWeight: 'normal',
-    margin: 0,
+const LogoImage = styled("img")({
+  marginBottom: "15px",
+  width: "150px",
 });
 
 function Footer() {
-    return (
-        <FooterContainer maxWidth="xl">
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={4}>
-                    <About>
-                        <AboutTitle>About Us</AboutTitle>
-                        We're PramaanPatra, revolutionizing certificate management with blockchain. Our mission: secure, transparent certificates for all. Join us in the future of trust. PramaanPatra - Certificates Simplified, Secure.
-                    </About>
-                    <Icons>
-                        <Icon href="/"><Facebook /></Icon>
-                        <Icon href="/"><Twitter /></Icon>
-                        <Icon href="/"><LinkedIn /></Icon>
-                        <Icon href="/"><Instagram /></Icon>
-                    </Icons>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                    <div>
-                        <Icon><MapIcon /></Icon>
-                        <CenterContent>
-                            <span> Street name and number</span> City, Country
-                        </CenterContent>
-                    </div>
-                    <div>
-                        <Icon><PhoneIcon /></Icon>
-                        <CenterContent> (+00) 0000 000 000</CenterContent>
-                    </div>
-                    <div>
-                        <Icon><EmailIcon /></Icon>
-                        <CenterContent>
-                            <Link href="mailto:office@company.com" style={{ color: '#0099ff', textDecoration: 'none' }}>office@company.com</Link>
-                        </CenterContent>
-                    </div>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                    <img src='/images/Logo-bg-black.png' alt='PramaanPatra' />
-                    <RightContent>
-                        <RightLink href="/">Solutions</RightLink> |
-                        <RightLink href="/">Industries</RightLink> |
-                        <RightLink href="/">Pricing</RightLink> |
-                        <RightLink href="/">Resources</RightLink> |
-                        <RightLink href="/">Marketplace</RightLink>
-                    </RightContent>
-                    <Name>PramaanPatra &copy; 2023</Name>
-                </Grid>
-            </Grid>
-        </FooterContainer>
-    );
+  return (
+    <FooterContainer maxWidth="xl">
+      <Grid container spacing={4}>
+        {/* About Section */}
+        <Grid item xs={12} sm={4}>
+          <About>
+            <AboutTitle>About Us</AboutTitle>
+            PramaanPatra is revolutionizing certificate management with
+            blockchain. Join us in the future of secure, transparent
+            certifications.
+          </About>
+          <Icons>
+            <Icon href="/" aria-label="Facebook">
+              <Facebook />
+            </Icon>
+            <Icon href="/" aria-label="Twitter">
+              <Twitter />
+            </Icon>
+            <Icon href="/" aria-label="LinkedIn">
+              <LinkedIn />
+            </Icon>
+            <Icon href="/" aria-label="Instagram">
+              <Instagram />
+            </Icon>
+          </Icons>
+        </Grid>
+
+        {/* Contact Section */}
+        <Grid item xs={12} sm={4}>
+          <ContactItem>
+            <Icon>
+              <MapIcon />
+            </Icon>
+            <CenterContent>123 Street, City, Country</CenterContent>
+          </ContactItem>
+          <ContactItem>
+            <Icon>
+              <PhoneIcon />
+            </Icon>
+            <CenterContent>(+00) 0000 000 000</CenterContent>
+          </ContactItem>
+          <ContactItem>
+            <Icon>
+              <EmailIcon />
+            </Icon>
+            <CenterContent>
+              <Link
+                href="mailto:office@company.com"
+                color="#0099ff"
+                underline="hover"
+              >
+                office@company.com
+              </Link>
+            </CenterContent>
+          </ContactItem>
+        </Grid>
+
+        {/* Links Section */}
+        <Grid item xs={12} sm={4} style={{ textAlign: "center" }}>
+          <LogoImage src="/images/Logo-bg-black.png" alt="PramaanPatra Logo" />
+          <RightContent>
+            <RightLink href="/">Solutions</RightLink> |
+            <RightLink href="/">Industries</RightLink> |
+            <RightLink href="/">Pricing</RightLink> |
+            <RightLink href="/">Resources</RightLink> |
+            <RightLink href="/">Marketplace</RightLink>
+          </RightContent>
+          <Typography
+            variant="body2"
+            color="#0099ff"
+            style={{ marginTop: "10px" }}
+          >
+            PramaanPatra &copy; 2023
+          </Typography>
+        </Grid>
+      </Grid>
+    </FooterContainer>
+  );
 }
 
 export default Footer;
