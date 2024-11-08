@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import certificate from "./artifacts/contracts/Certificate.sol/Certificate.json";
 import BirthCertificate from "./components/Forms/BirthCertificate";
+import DegreeCertificate from "./components/Forms/DegreeCertificate";
 import ShowCertificate from "./components/ShowCertificate";
 import { ethers } from "ethers";
 import { Routes, Route } from "react-router-dom";
@@ -13,6 +14,7 @@ import SignIn from "./components/auth/SignIn";
 import LandDeed from "./components/Forms/LandDeed";
 import { AuthProvider } from "./components/auth/AuthContext";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import PropertyCertificate from "./components/Forms/PropertyCertificate";
 
 function App() {
   const [account, setAccount] = useState("");
@@ -86,15 +88,31 @@ function App() {
             }
           />
           <Route
-            path="/create-landdeed-certificate"
+            path="/create-degree-certificate"
             element={
               <ProtectedRoute>
-                <LandDeed contract={contract}/>
+                <DegreeCertificate contract={contract} />
               </ProtectedRoute>
             }
           />
           <Route
-            path="/certificate/:id/landdeed-certificate/:txid"
+            path="/certificate/:id/degree-certificate/:txid"
+            element={
+              <ProtectedRoute>
+                <ShowCertificate contract={contract} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/create-property-certificate"
+            element={
+              <ProtectedRoute>
+                <PropertyCertificate contract={contract}/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/certificate/:id/property-certificate/:txid"
             element={
               <ProtectedRoute>
                 <ShowCertificate contract={contract} />

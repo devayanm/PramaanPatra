@@ -1,13 +1,33 @@
-import { Box, Card, FormControl, InputLabel, OutlinedInput, Button, Stack, Typography, Divider } from "@mui/material";
+import {
+  Box,
+  Card,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  Button,
+  Stack,
+  Typography,
+  Divider,
+} from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 import { useEffect, useState } from "react";
+import { ArrowBack } from "@mui/icons-material";
 
-const style = { position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 400, 
-bgcolor: "background.paper", border: "2px solid #000", boxShadow: 24, p: 4, };
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 function BirthCertificate({ contract }) {
   const [open, setOpen] = useState(false);
@@ -123,7 +143,7 @@ function BirthCertificate({ contract }) {
     <Card
       sx={{
         width: 1000,
-        height: 950,
+        height: 900,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -133,6 +153,21 @@ function BirthCertificate({ contract }) {
       component="form"
       onSubmit={formik.handleSubmit}
     >
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={() => navigate("/")}
+        sx={{
+          position: "absolute",
+          top: 40,
+          left: 40,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <ArrowBack sx={{ mr: 1 }} />
+        Home
+      </Button>
       <Box sx={{ width: "50%", p: 6 }}>
         <Typography variant="h5">Create Birth Certificate</Typography>
         <Divider sx={{ mb: 4 }} />

@@ -123,7 +123,7 @@ function Homepage() {
           {
             title: "Property Certificates",
             description: "Create your Property Certificate here",
-            link: "/create-landdeed-certificate",
+            link: "/create-property-certificate",
             imgSrc: "/images/about-img3.png",
           },
         ].map((item, index) => (
