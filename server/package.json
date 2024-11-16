@@ -8,10 +8,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint . --fix",
-    "build": "babel src -d dist",
-    "clean": "rm -rf dist",
-    "prestart": "npm run build"
+    "lint": "eslint . --fix"
   },
   "author": "",
   "license": "ISC",
