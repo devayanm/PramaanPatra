@@ -112,7 +112,7 @@ function BirthCertificate({ contract }) {
   useEffect(() => {
     const verifyAadhar = async () => {
       await axios
-        .get(backendUrl)
+      .get(`${backendUrl}/aadharapi`)
         .then((res) => {
           res.data.map(
             (user) =>
@@ -128,7 +128,7 @@ function BirthCertificate({ contract }) {
   useEffect(() => {
     const verifyAadhar = async () => {
       await axios
-        .get(backendUrl)
+      .get(`${backendUrl}/aadharapi`)
         .then((res) => {
           res.data.map(
             (user) =>
