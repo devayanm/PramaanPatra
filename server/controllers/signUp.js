@@ -3,10 +3,14 @@ import { sendMail } from "../utils/sendEmail.js";
 import { Token } from "../models/token.js";
 import crypto from "crypto";
 
+import { User } from "../models/auth.js";
+import { sendMail } from "../utils/sendEmail.js";
+import { Token } from "../models/token.js";
+import crypto from "crypto";
+
 export const signUp = async (req, res) => {
   try {
-    const { firstName, lastName, aadharNo, employeeId, email, password } =
-      req.body;
+    const { firstName, lastName, aadharNo, employeeId, email, password } = req.body;
     const newUser = new User({
       firstName,
       lastName,
@@ -16,18 +20,20 @@ export const signUp = async (req, res) => {
     });
     const registerUser = await User.register(newUser, password);
     req.logIn(registerUser, async (err) => {
-      if (err) return err;
+      if (err) return res.status(500).json({ message: "Login error after registration!" });
       const token = new Token({
         userId: registerUser._id,
         token: crypto.randomBytes(32).toString("hex"),
       });
       console.log(token);
       await token.save();
-      const url = `http://localhost:3000/auth/${registerUser._id}/verify/${token.token}`;
+
+      const url = `${process.env.FRONTEND_URL}/auth/${registerUser._id}/verify/${token.token}`;
       await sendMail(email, "Email Verification", url);
       res.status(201).json(registerUser);
     });
   } catch (error) {
+    console.error("Sign-up error:", error); 
     res.status(500).json({ message: "Something went wrong!" });
   }
 };
