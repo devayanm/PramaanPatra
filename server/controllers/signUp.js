@@ -3,11 +3,6 @@ import { sendMail } from "../utils/sendEmail.js";
 import { Token } from "../models/token.js";
 import crypto from "crypto";
 
-import { User } from "../models/auth.js";
-import { sendMail } from "../utils/sendEmail.js";
-import { Token } from "../models/token.js";
-import crypto from "crypto";
-
 export const signUp = async (req, res) => {
   try {
     const { firstName, lastName, aadharNo, employeeId, email, password } = req.body;
