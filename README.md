@@ -95,7 +95,7 @@
 ### Backend
 
 1. Change to the server directory: `cd server`
-2. Run the Node.js server: `node index.js`
+2. Run the Node.js server: `npm run dev`
 
 ### Testnet
 
