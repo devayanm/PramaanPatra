@@ -89,12 +89,14 @@ function BirthCertificate({ contract }) {
     }
   }
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
   async function matchFatherAadhar() {
     const formdata = new FormData();
     formdata.append("aadhar_no", fatherAadhar);
     await axios({
       method: "POST",
-      url: "http://localhost:8080/aadhar",
+      url: `${backendUrl}/aadhar`,
       data: formdata,
       headers: {
         "Content-Type": "application/json",
@@ -106,11 +108,11 @@ function BirthCertificate({ contract }) {
       })
       .catch((err) => console.log(err));
   }
-
+  
   useEffect(() => {
     const verifyAadhar = async () => {
       await axios
-        .get("http://localhost:8080/aadharapi")
+        .get(backendUrl)
         .then((res) => {
           res.data.map(
             (user) =>
@@ -122,11 +124,11 @@ function BirthCertificate({ contract }) {
     };
     verifyAadhar();
   }, [formik.values.father_aadhar_no]);
-
+  
   useEffect(() => {
     const verifyAadhar = async () => {
       await axios
-        .get("http://localhost:8080/aadharapi")
+        .get(backendUrl)
         .then((res) => {
           res.data.map(
             (user) =>
