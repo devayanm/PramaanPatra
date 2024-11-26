@@ -10,7 +10,7 @@ import { aadharDetails } from "./API/aadharDetails.js";
 import aadharRoute from "./routes/aadhar.js";
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/sih", {
+  .connect("process.env.MONGO_URI", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
