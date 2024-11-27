@@ -96,7 +96,7 @@ function SignUp() {
 
   async function signUp(values, onSubmitProps) {
     await axios
-      .get("http://localhost:8080/aadharapi")
+      .get(`${backendUrl}/aadharapi`)
       .then((res) =>
         res.data.map(async (user) => {
           if (user.aadhar_no === formik.values.aadharNo) {
@@ -106,7 +106,7 @@ function SignUp() {
             }
             await axios({
               method: "post",
-              url: "http://localhost:8080/auth/signup",
+              url: `${backendUrl}/auth/signup`,
               data: formdata,
               headers: {
                 "Content-Type": "application/json",
