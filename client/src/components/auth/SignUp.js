@@ -94,6 +94,8 @@ function SignUp() {
     }
   };
 
+  const backendUrl = process.env.REACT_APP_BACKEND_URL:
+
   async function signUp(values, onSubmitProps) {
     await axios
       .get(`${backendUrl}/aadharapi`)
