@@ -47,7 +47,7 @@ function SignIn() {
     }),
   });
 
-  const backendUrl = process.env.REACT_APP_BACKEND_URL:
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
   
   async function signIn(values, onSubmitProps) {
     setLoading(true);
